@@ -1,0 +1,171 @@
+*version
+3
+data-file-overflow=false
+clock=dual
+elapsed-time-usec=75677178
+num-method-calls=501
+clock-call-overhead-nsec=2477
+vm=dalvik
+*threads
+1	main
+10	Binder_2
+9	Binder_1
+8	FinalizerWatchdogDaemon
+7	FinalizerDaemon
+6	ReferenceQueueDaemon
+5	Compiler
+4	JDWP
+3	Signal Catcher
+2	GC
+*methods
+0x62909d48	java/lang/VMThread	currentThread	()Ljava/lang/Thread;	VMThread.java	-2
+0x62948ac0	java/lang/AbstractStringBuilder	append0	(C)V	AbstractStringBuilder.java	131
+0x62948b30	java/lang/AbstractStringBuilder	append0	(Ljava/lang/String;)V	AbstractStringBuilder.java	138
+0x62949038	java/lang/AbstractStringBuilder	length	()I	AbstractStringBuilder.java	381
+0x629492a0	java/lang/AbstractStringBuilder	toString	()Ljava/lang/String;	AbstractStringBuilder.java	-1
+0x62948930	java/lang/AbstractStringBuilder	<init>	()V	AbstractStringBuilder.java	74
+0x629489d8	java/lang/AbstractStringBuilder	enlargeBuffer	(I)V	AbstractStringBuilder.java	-1
+0x6290afd8	java/lang/ReflectiveOperationException	<init>	(Ljava/lang/String;)V	ReflectiveOperationException.java	37
+0x62a18e70	java/lang/ThreadLocal$Values	access$000	(Ljava/lang/ThreadLocal$Values;)[Ljava/lang/Object;	ThreadLocal.java	144
+0x62a18ea8	java/lang/ThreadLocal$Values	access$100	(Ljava/lang/ThreadLocal$Values;)I	ThreadLocal.java	144
+0x62c5bd40	com/licenta/grt_benchmark/GRTwrapper	<clinit>	()V	GRTwrapper.java	5
+0x62c5bdb0	com/licenta/grt_benchmark/GRTwrapper	test	()V	GRTwrapper.java	-2
+0x62906388	java/lang/ClassLoader	findLoadedClass	(Ljava/lang/String;)Ljava/lang/Class;	ClassLoader.java	346
+0x629065b8	java/lang/ClassLoader	loadClass	(Ljava/lang/String;)Ljava/lang/Class;	ClassLoader.java	457
+0x629065f0	java/lang/ClassLoader	loadClass	(Ljava/lang/String;Z)Ljava/lang/Class;	ClassLoader.java	487
+0x62904670	java/lang/Throwable	fillInStackTrace	()Ljava/lang/Throwable;	Throwable.java	162
+0x629043c8	java/lang/Throwable	<init>	(Ljava/lang/String;)V	Throwable.java	92
+0x62904518	java/lang/Throwable	nativeFillInStackTrace	()Ljava/lang/Object;	Throwable.java	-2
+0x62944e00	dalvik/system/BaseDexClassLoader	findClass	(Ljava/lang/String;)Ljava/lang/Class;	BaseDexClassLoader.java	53
+0x62944e38	dalvik/system/BaseDexClassLoader	findLibrary	(Ljava/lang/String;)Ljava/lang/String;	BaseDexClassLoader.java	77
+0x62944ee0	dalvik/system/BaseDexClassLoader	getLdLibraryPath	()Ljava/lang/String;	BaseDexClassLoader.java	126
+0x629d2c30	android/os/Debug	startMethodTracing	(Ljava/lang/String;)V	Debug.java	-1
+0x629d2ca0	android/os/Debug	startMethodTracing	(Ljava/lang/String;II)V	Debug.java	643
+0x629d2db8	android/os/Debug	stopMethodTracing	()V	Debug.java	692
+0x62925b08	java/io/File	getPath	()Ljava/lang/String;	File.java	492
+0x629260b8	java/io/File	toString	()Ljava/lang/String;	File.java	1051
+0x62925240	java/io/File	<init>	(Ljava/io/File;Ljava/lang/String;)V	File.java	124
+0x629252b0	java/io/File	<init>	(Ljava/lang/String;Ljava/lang/String;)V	File.java	148
+0x62925470	java/io/File	fixSlashes	(Ljava/lang/String;)Ljava/lang/String;	File.java	184
+0x629254e0	java/io/File	join	(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;	File.java	-1
+0x629074d0	java/lang/String	_getChars	(II[CI)V	String.java	908
+0x62907508	java/lang/String	charAt	(I)C	String.java	577
+0x62907a80	java/lang/String	isEmpty	()Z	String.java	1086
+0x62907b98	java/lang/String	length	()I	String.java	1210
+0x62907f18	java/lang/String	toCharArray	()[C	String.java	1484
+0x62906c08	java/lang/String	<init>	(II[C)V	String.java	431
+0x62934b20	java/util/Collections	emptyList	()Ljava/util/List;	Collections.java	2401
+0x6292edc0	libcore/io/OsConstants	S_ISSOCK	(I)Z	OsConstants.java	28
+0x629455b0	dalvik/system/DexPathList	findClass	(Ljava/lang/String;Ljava/util/List;)Ljava/lang/Class;	DexPathList.java	318
+0x629455e8	dalvik/system/DexPathList	findLibrary	(Ljava/lang/String;)Ljava/lang/String;	DexPathList.java	381
+0x62945690	dalvik/system/DexPathList	getNativeLibraryDirectories	()[Ljava/io/File;	DexPathList.java	132
+0x6295d810	dalvik/system/BlockGuard	getThreadPolicy	()Ldalvik/system/BlockGuard$Policy;	BlockGuard.java	139
+0x62935e28	java/util/AbstractCollection	<init>	()V	AbstractCollection.java	36
+0x6295c310	java/lang/Runtime	loadLibrary	(Ljava/lang/String;Ljava/lang/ClassLoader;)V	Runtime.java	355
+0x6295be00	java/lang/Runtime	doLoad	(Ljava/lang/String;Ljava/lang/ClassLoader;)Ljava/lang/String;	Runtime.java	413
+0x6295be38	java/lang/Runtime	getRuntime	()Ljava/lang/Runtime;	Runtime.java	306
+0x6295bee0	java/lang/Runtime	nativeLoad	(Ljava/lang/String;Ljava/lang/ClassLoader;Ljava/lang/String;)Ljava/lang/String;	Runtime.java	-2
+0x6295db30	android/os/StrictMode$AndroidBlockGuardPolicy	onReadFromDisk	()V	StrictMode.java	1128
+0x6292f380	libcore/io/Posix	close	(Ljava/io/FileDescriptor;)V	Posix.java	-2
+0x6292f658	libcore/io/Posix	fstat	(Ljava/io/FileDescriptor;)Llibcore/io/StructStat;	Posix.java	-2
+0x6292ff88	libcore/io/Posix	open	(Ljava/lang/String;II)Ljava/io/FileDescriptor;	Posix.java	-2
+0x629666b8	dalvik/system/VMStack	getCallingClassLoader	()Ljava/lang/ClassLoader;	VMStack.java	-2
+0x62bfd648	dalvik/system/DexFile	loadClassBinaryName	(Ljava/lang/String;Ljava/lang/ClassLoader;Ljava/util/List;)Ljava/lang/Class;	DexFile.java	215
+0x62bfd3a0	dalvik/system/DexFile	defineClass	(Ljava/lang/String;Ljava/lang/ClassLoader;ILjava/util/List;)Ljava/lang/Class;	DexFile.java	220
+0x62bfd3d8	dalvik/system/DexFile	defineClassNative	(Ljava/lang/String;Ljava/lang/ClassLoader;I)Ljava/lang/Class;	DexFile.java	-2
+0x62942a20	libcore/io/BlockGuardOs	close	(Ljava/io/FileDescriptor;)V	BlockGuardOs.java	60
+0x62942b38	libcore/io/BlockGuardOs	open	(Ljava/lang/String;II)Ljava/io/FileDescriptor;	BlockGuardOs.java	106
+0x6290a730	java/lang/Exception	<init>	(Ljava/lang/String;)V	Exception.java	47
+0x62943380	libcore/io/ForwardingOs	fstat	(Ljava/io/FileDescriptor;)Llibcore/io/StructStat;	ForwardingOs.java	56
+0x62946758	java/lang/VMClassLoader	findLoadedClass	(Ljava/lang/ClassLoader;Ljava/lang/String;)Ljava/lang/Class;	VMClassLoader.java	-2
+0x629468a8	java/lang/VMClassLoader	loadClass	(Ljava/lang/String;Z)Ljava/lang/Class;	VMClassLoader.java	-2
+0x62945150	java/lang/BootClassLoader	findClass	(Ljava/lang/String;)Ljava/lang/Class;	ClassLoader.java	761
+0x629452a0	java/lang/BootClassLoader	loadClass	(Ljava/lang/String;Z)Ljava/lang/Class;	ClassLoader.java	818
+0x62945110	java/lang/BootClassLoader	getInstance	()Ljava/lang/BootClassLoader;	ClassLoader.java	748
+0x62913728	java/io/FileDescriptor	<init>	()V	FileDescriptor.java	62
+0x62a48598	libcore/io/IoUtils	canOpenReadOnly	(Ljava/lang/String;)Z	IoUtils.java	-1
+0x62945c80	dalvik/system/DexPathList$Element	access$000	(Ldalvik/system/DexPathList$Element;)Ldalvik/system/DexFile;	DexPathList.java	394
+0x6295ace0	java/lang/ThreadLocal	get	()Ljava/lang/Object;	ThreadLocal.java	53
+0x6295adf8	java/lang/ThreadLocal	values	(Ljava/lang/Thread;)Ljava/lang/ThreadLocal$Values;	ThreadLocal.java	121
+0x629381e8	java/util/ArrayList	<init>	()V	ArrayList.java	81
+0x629142e0	dalvik/system/VMDebug	startClassPrep	()V	VMDebug.java	354
+0x629143f8	dalvik/system/VMDebug	startMethodTracing	(Ljava/lang/String;II)V	VMDebug.java	161
+0x629145f0	dalvik/system/VMDebug	stopMethodTracing	()V	VMDebug.java	-2
+0x62935a58	java/util/AbstractList	<init>	()V	AbstractList.java	376
+0x62947df8	java/lang/StringBuilder	append	(C)Ljava/lang/StringBuilder;	StringBuilder.java	124
+0x62947f80	java/lang/StringBuilder	append	(Ljava/lang/Object;)Ljava/lang/StringBuilder;	StringBuilder.java	199
+0x62947fb8	java/lang/StringBuilder	append	(Ljava/lang/String;)Ljava/lang/StringBuilder;	StringBuilder.java	216
+0x62948680	java/lang/StringBuilder	length	()I	StringBuilder.java	44
+0x62948878	java/lang/StringBuilder	toString	()Ljava/lang/String;	StringBuilder.java	663
+0x62947bf8	java/lang/StringBuilder	<init>	()V	StringBuilder.java	54
+0x629248c0	libcore/io/StructStat	<init>	(JJIJIIJJJJJJJ)V	StructStat.java	75
+0x62908738	java/lang/Thread	currentThread	()Ljava/lang/Thread;	Thread.java	470
+0x6290fb70	java/lang/System	arraycopy	(Ljava/lang/Object;ILjava/lang/Object;II)V	System.java	-2
+0x6290ff60	java/lang/System	loadLibrary	(Ljava/lang/String;)V	System.java	526
+0x62910120	java/lang/System	mapLibraryName	(Ljava/lang/String;)Ljava/lang/String;	System.java	-2
+0x6290aee8	java/lang/ClassNotFoundException	<init>	(Ljava/lang/String;Ljava/lang/Throwable;)V	ClassNotFoundException.java	59
+*end
+SLOW   è˚Êø˚                 ˘Cëb    !   °,ùb   '   1,ùb   +   ‡Bëb-   L   ∏eêb7   V   eêbK   l   àcêbR   q   QîbW   v   Qîb^   }   Xgîbd   É   Ygîbo   é   âcêbs   í   †Rîbx   ó   àcêb|   õ   QîbÄ   û   QîbÑ   ¢   Xgîbà   ¶   Ygîbè   ≠   âcêbì   ±   PQîbó   µ   ®hîbõ   π   ‡Bëb¶   ≈   ·Bëb√   ·   ËÆêb„      ÿØêbÈ      0ßêbÓ      »CêbÚ       Kìb˜      !Kìb¸      pFêb     Eêb  $   Eêb  9   qFêb   >   …Cêb#  B   1ßêb'  F   ŸØêb+  I   ÈÆêb.  M   ©hîb6  T   RQîb<  Z   ¢Rîb@  ^    NîbF  d   ËÅìbM  l   XZìbR  p   (^ìbV  u   )^ìbZ  x   YZìb^  |   ÈÅìbb  Ä   ∞Uîbf  Ö   Ä\îbl  ã   Å\îbp  è   H÷øbu  î   †”øby  ò   ÿ”øb}  ú   ‡Bëbâ  ®   ·Bëb≠  Ã   Ÿ”øb≥  “   °”øb∏  ÷   I÷øbª  ⁄   ±Uîbø  ﬁ   Nîb√  ‚   Òeêb«  Â   πeêb   È   ·Bëbœ  Ì   @Ω≈bﬁ  ˝   ‡Bëbı     ∏eêb˚     eêbˇ     àcêb  !   Qîb  &   Qîb  +   Xgîb  /   Ygîb  8   âcêb  <   †Rîb"  @   àcêb&  E   Qîb*  H   Qîb.  L   Xgîb2  P   Ygîb9  X   âcêb=  \   °RîbA  `   ÒeêbE  c   πeêbI  g   ·BëbM  l   `ˇêb`  ~   8æïbe  É   9æïbj  à   ∏fñbn  ç   πfñbs  í   √ïbx  ñ   8Nîb|  ö   ËUîbÄ  û    ëbÑ  ¢   !ëb≥  “   @Ríbª  Ÿ   [íb¿  ﬁ   	[íbƒ  ‚   ∞Ríb»  Ê   Äzêbı     Åzêb¸     Äzêb      Åzêb  #   ‡Tíb	  '   ò{êb  6   ô{êb  :   uêb'  E   	uêb+  J   ò{êb0  O   ô{êb4  R   uêb8  V   	uêb;  Z   ¯{îbC  b   0âîbH  f   1âîbO  m   ˘{îbR  q   ∏îbW  u   0ãîb[  z   ò{êb_  ~   ô{êbc  Å   ÿâîbh  Ü   p˚êbn  ç   q˚êbt  ì   Ÿâîbx  ó   –têb|  õ   p˚êbÅ  ü   q˚êbÖ  §   —têbâ  ß   1ãîbç  ´   πîbê  Ø   ¯}îbï  ≥   ¿äîbô  ∑   ÿâîbù  º   p˚êb£  ¡   q˚êbß  ≈   Ÿâîb´  …   ¡äîbØ  Õ   ˘}îb≥  —   ∏îb∂  ’   0ãîb∫  ÿ   ò{êbæ  ‹   ô{êb¡  ‡   –têb≈  ‰   p˚êb…  Ë   q˚êbÕ  Ï   —têb—     1ãîb’  Ù   πîbŸ  ˜   xàîb›  ˚   †íîb·      lêbÁ     	lêbÎ  
+   °íîbÔ     yàîbÛ     ·Tíbˆ     pTíb˙     êbˇ     p˚êb  #   q˚êb	  '   êb  +   qTíb  ;   ±Ríb   ?   ARíb$  C   [íb(  G   	[íb,  J   òÖ§b0  O   8+îb8  V   ÿïb<  Z   ‡¨ïbA  `   8áêbF  d   HùêbJ  h   IùêbN  m   9áêbR  p   ¯≠ïbV  t   ˘≠ïbZ  x   pé°b^  |   qé°bb  Ä   ®é°bf  Ñ   ©é°bi  à   ·¨ïbn  å   ÿïbt  í   0€ïbx  ó   1€ïb~  ù   àˇíbÑ  ¢   (7ëb–     )7ëb÷  ı   âˇíbÁ  	   9+îbÏ  
+	    *îbÒ  	   Ä3îb˜  	   Xˆíb˚  	   ¿Híb  5	   ¡Híb  ;	   Yˆíb"  A	   Å3îb&  D	   ¿Ìíb*  I	   ¡Ìíb/  N	   ÄÛíb4  S	   ÅÛíbZ  z	   !*îb`  	   ôÖ§bd  É	   ÈUîbh  á	   9Nîbl  ä	    æïbz  ò	   ‡NîbÅ  ü	   ¯{îbà  ¶	   0âîbå  ´	   1âîbí  ±	   ˘{îbñ  µ	   êVîbö  π	   ëVîbû  Ω	   ÄÜîb£  ¡	   8êîbß  ∆	   9êîb´  …	   ÅÜîbØ  Õ	   Äîb≥  —	   ∏`íb∑  ’	   π`íbª  Ÿ	   0ãîbø  ›	   ò{êb√  ·	   ô{êb«  Â	   ÿâîbÀ  È	   p˚êbÙ  
+   q˚êb˙  
+   Ÿâîbˇ  
+   –têb  !
+   p˚êb  %
+   q˚êb  *
+   —têb  -
+   1ãîb  1
+   Åîb  5
+   ÄÜîb  9
+   8êîb  =
+   9êîb"  A
+   ÅÜîb&  D
+   ¯}îb*  H
+   ¿äîb.  L
+   ÿâîb2  P
+   p˚êb8  W
+   q˚êb=  [
+   ŸâîbA  _
+   ¡äîbE  c
+   ˘}îbI  g
+   ÄîbL  k
+   ∏`íbP  o
+   π`íbT  s
+   0ãîbX  v
+   ò{êb\  z
+   ô{êb`  ~
+   –têbd  Ç
+   p˚êbh  Ü
+   q˚êbl  ã
+   —têbp  é
+   1ãîbt  í
+   Åîbw  ñ
+   ÄÜîb{  ö
+   8êîb  ù
+   9êîbÉ  °
+   ÅÜîbÜ  •
+   ¯}îbä  ®
+   ¿äîbé  ¨
+   ¡äîbí  ∞
+   ˘}îbï  ¥
+   Äîbô  ∑
+   ∏`íbù  ª
+   π`íb°  ø
+   0ãîb§  √
+   ò{êb®  «
+   ô{êb¨   
+   ÿâîb∞  Œ
+   p˚êbµ  ‘
+   q˚êb∫  ÿ
+   Ÿâîbæ  ‹
+   –têb¬  ‡
+   p˚êb∆  ‰
+   q˚êb   Ë
+   —têbÕ  Ï
+   1ãîb—  
+   Åîb’  Û
+   xàîbŸ  ˜
+   †íîb›  ˚
+   lêb‚     	lêbÁ     °íîbÍ  	   yàîbÓ     ·NîbÚ     ‡æïb  .   ·æïbW,  2   æïb`,  &2   √ïbc,  )2   aˇêbg,  -2   `ˇêb},  C2   8æïbÅ,  H2   9æïbÖ,  K2   ∏fñbà,  N2   πfñbå,  R2   √ïbè,  U2   8Nîbì,  Y2   ËUîbó,  ]2    ëbõ,  a2   !ëb∏,  2   @Ríbø,  Ö2   [íb√,  â2   	[íb≈,  ã2   ∞Ríb…,  è2   ÄzêbÕ,  ì2   Åzêb–,  ñ2   Äzêb”,  ô2   Åzêb÷,  ú2   ‡TíbŸ,  ü2   ò{êb€,  ¢2   ô{êbﬁ,  §2   uêb·,  ®2   	uêbÂ,  ´2   ò{êbË,  Ø2   ô{êbÎ,  ±2   uêbÓ,  ¥2   	uêb,  ∂2   ¯{îbÙ,  ª2   0âîb¯,  æ2   1âîb¸,  ¬2   ˘{îbˇ,  ≈2   ∏îb-  »2   0ãîb-  À2   ò{êb-  Õ2   ô{êb
+-  –2   ÿâîb-  ‘2   p˚êb-  Ÿ2   q˚êb-  ›2   Ÿâîb-  ‡2   –têb-  „2   p˚êb -  Ê2   q˚êb#-  È2   —têb&-  Ï2   1ãîb)-  Ô2   πîb+-  Ò2   ¯}îb/-  ı2   ¿äîb2-  ¯2   ÿâîb5-  ˚2   p˚êb9-  ˇ2   q˚êb<-  3   Ÿâîb?-  3   ¡äîbB-  3   ˘}îbE-  3   ∏îbG-  3   0ãîbJ-  3   ò{êbM-  3   ô{êbO-  3   –têbR-  3   p˚êbU-  3   q˚êbX-  3   —têbZ-   3   1ãîb]-  #3   πîb`-  &3   xàîbc-  )3   †íîbg-  -3   lêbl-  23   	lêbo-  53   °íîbq-  83   yàîbt-  :3   ·Tíbw-  =3   pTíbz-  @3   êb}-  C3   p˚êbÅ-  G3   q˚êbÑ-  J3   êbá-  M3   qTíbí-  X3   ±Ríbï-  [3   ARíbò-  ^3   [íbõ-  a3   	[íbù-  d3   òÖ§b°-  g3   8+îbß-  n3   ÿïb´-  q3   ‡¨ïbØ-  u3   8áêb≤-  x3   Hùêbµ-  |3   Iùêbπ-  3   9áêbª-  Å3   ¯≠ïbæ-  Ñ3   ˘≠ïb¡-  á3   pé°bƒ-  ä3   qé°b«-  ç3   ®é°b -  ê3   ©é°bÕ-  ì3   ·¨ïb–-  ñ3   ÿïb’-  õ3   0€ïbÿ-  û3   1€ïb‹-  ¢3   àˇíb‡-  ¶3   (7ëb".  È3   )7ëb'.  Ì3   âˇíb3.  ˘3   9+îb6.  ¸3    *îb;.  4   Ä3îb>.  4   XˆíbB.  4   ¿HíbV.  4   ¡HíbZ.   4   Yˆíb^.  %4   Å3îba.  '4   ¿Ìíbd.  +4   ¡Ìíbh.  .4   ÄÛíbk.  14   ÅÛíbz.  A4   !*îb}.  C4   ôÖ§bÄ.  F4   ÈUîbÉ.  I4   9NîbÖ.  K4    æïbâ.  O4   ‡Nîbç.  T4   ¯{îbí.  X4   0âîbî.  Z4   1âîbô.  _4   ˘{îbõ.  b4   êVîbû.  d4   ëVîb°.  g4   ÄÜîb§.  j4   8êîbß.  m4   9êîb™.  p4   ÅÜîb≠.  s4   ÄîbØ.  u4   ∏`íb≥.  y4   π`íbµ.  {4   0ãîb∏.  ~4   ò{êbª.  Å4   ô{êbæ.  Ñ4   ÿâîb¿.  á4   p˚êb≈.  ã4   q˚êb».  é4   Ÿâîb .  ê4   –têbÕ.  ì4   p˚êb–.  ñ4   q˚êb”.  ô4   —têb÷.  ú4   1ãîbŸ.  ü4   Åîb€.  °4   ÄÜîbﬁ.  §4   8êîb·.  ß4   9êîb„.  ©4   ÅÜîbÊ.  ¨4   ¯}îbÈ.  Ø4   ¿äîbÏ.  ≤4   ÿâîbÔ.  µ4   p˚êbÚ.  ∏4   q˚êbı.  ª4   Ÿâîb¯.  æ4   ¡äîb˚.  ¡4   ˘}îb˛.  ƒ4   Äîb /  ∆4   ∏`íb/  …4   π`íb/  Ã4   0ãîb/  Œ4   ò{êb/  —4   ô{êb/  ‘4   –têb/  ÷4   p˚êb/  Ÿ4   q˚êb/  ‹4   —têb/  ﬂ4   1ãîb/  ·4   Åîb/  ‰4   ÄÜîb!/  Á4   8êîb$/  Í4   9êîb&/  Ï4   ÅÜîb)/  Ô4   ¯}îb+/  Ò4   ¿äîb./  Ù4   ¡äîb1/  ˜4   ˘}îb3/  ˘4   Äîb6/  ¸4   ∏`íb9/  ˇ4   π`íb;/  5   0ãîb>/  5   ò{êbA/  5   ô{êbC/  	5   ÿâîbF/  5   p˚êbJ/  5   q˚êbM/  5   ŸâîbP/  5   –têbR/  5   p˚êbU/  5   q˚êbX/  5   —têbZ/  !5   1ãîb]/  #5   Åîb`/  &5   xàîbb/  )5   †íîbe/  +5   lêbi/  /5   	lêbl/  25   °íîbo/  55   yàîbq/  75   ·Nîbt/  :5   ‡æïbw/  =5   ·æïb˝5  ü<   æïb6  £<   √ïb6  ß<   aˇêb
+6  ™<   AΩ≈b6  ¨<   ∞Ω≈b6  ¥<   ±Ω≈bøîÄÖΩÇ ∏-ùbËîÄ¨ΩÇ Eëb˛îÄ¡ΩÇ
