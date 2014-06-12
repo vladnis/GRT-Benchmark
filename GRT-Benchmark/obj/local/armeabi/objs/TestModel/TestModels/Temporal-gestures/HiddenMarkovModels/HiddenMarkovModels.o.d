@@ -2,12 +2,14 @@ obj/local/armeabi/objs/TestModel/TestModels/Temporal-gestures/HiddenMarkovModels
  jni/TestModels/Temporal-gestures/HiddenMarkovModels/HiddenMarkovModels.cpp \
  jni/TestModels/Temporal-gestures/HiddenMarkovModels/HiddenMarkovModels.h \
  jni/TestModels/Temporal-gestures/HiddenMarkovModels/../BaseTGTestModel.h \
- jni/TestModels/Temporal-gestures/HiddenMarkovModels/../../Abstract/AbstractTestModel.h \
- jni/TestModels/Temporal-gestures/HiddenMarkovModels/../../Abstract/../Structures/TestModelConfig.h \
- /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/jni.h \
+ /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/string.h \
  /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/sys/cdefs.h \
  /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/sys/cdefs_elf.h \
  /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/android/api-level.h \
+ /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/malloc.h \
+ jni/TestModels/Temporal-gestures/HiddenMarkovModels/../../Abstract/AbstractTestModel.h \
+ jni/TestModels/Temporal-gestures/HiddenMarkovModels/../../Abstract/../Structures/TestModelConfig.h \
+ /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/jni.h \
  jni/GRTlib/include/GRT.h jni/GRTlib/include/Util/GRTVersionInfo.h \
  jni/GRTlib/include/Util/GRTCommon.h \
  /home/vlad/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/iostream \
@@ -246,23 +248,29 @@ obj/local/armeabi/objs/TestModel/TestModels/Temporal-gestures/HiddenMarkovModels
  /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/asm/resource.h \
  /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/asm-generic/resource.h \
  jni/TestModels/Temporal-gestures/HiddenMarkovModels/../../Structures/KfoldTimeSeriesData.h \
+ jni/TestModels/Temporal-gestures/HiddenMarkovModels/../../Structures/TestModelResult.h \
+ jni/TestModels/Temporal-gestures/HiddenMarkovModels/../../Structures/TestModelTimer.h \
  jni/TestModels/Temporal-gestures/HiddenMarkovModels/../../Structures/TestModelException.h
 
 jni/TestModels/Temporal-gestures/HiddenMarkovModels/HiddenMarkovModels.h:
 
 jni/TestModels/Temporal-gestures/HiddenMarkovModels/../BaseTGTestModel.h:
 
-jni/TestModels/Temporal-gestures/HiddenMarkovModels/../../Abstract/AbstractTestModel.h:
-
-jni/TestModels/Temporal-gestures/HiddenMarkovModels/../../Abstract/../Structures/TestModelConfig.h:
-
-/home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/jni.h:
+/home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/string.h:
 
 /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/sys/cdefs.h:
 
 /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/sys/cdefs_elf.h:
 
 /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/android/api-level.h:
+
+/home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/malloc.h:
+
+jni/TestModels/Temporal-gestures/HiddenMarkovModels/../../Abstract/AbstractTestModel.h:
+
+jni/TestModels/Temporal-gestures/HiddenMarkovModels/../../Abstract/../Structures/TestModelConfig.h:
+
+/home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/jni.h:
 
 jni/GRTlib/include/GRT.h:
 
@@ -763,5 +771,9 @@ jni/TestModels/Temporal-gestures/HiddenMarkovModels/../../Structures/TestModelTi
 /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/asm-generic/resource.h:
 
 jni/TestModels/Temporal-gestures/HiddenMarkovModels/../../Structures/KfoldTimeSeriesData.h:
+
+jni/TestModels/Temporal-gestures/HiddenMarkovModels/../../Structures/TestModelResult.h:
+
+jni/TestModels/Temporal-gestures/HiddenMarkovModels/../../Structures/TestModelTimer.h:
 
 jni/TestModels/Temporal-gestures/HiddenMarkovModels/../../Structures/TestModelException.h:

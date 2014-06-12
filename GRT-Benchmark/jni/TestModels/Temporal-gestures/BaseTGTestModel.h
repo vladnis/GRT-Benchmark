@@ -8,13 +8,16 @@
 #ifndef BASETGTESTMODEL_H_
 #define BASETGTESTMODEL_H_
 
-#include "../Abstract/AbstractTestModel.h"
 #include <string.h>
+
+#include "../Abstract/AbstractTestModel.h"
+
 #include "../Structures/TestModelException.h"
 #include "../Structures/TestModelTimer.h"
 #include "../Structures/KfoldTimeSeriesData.h"
+#include "../Structures/TestModelResult.h"
 
-class BaseTGTestModel: public AbstractTestModel {
+class BaseTGTestModel: public AbstractTestModel, public TestModelResult {
 
 protected:
 	GRT::LabelledTimeSeriesClassificationData trainingDataset;
@@ -37,6 +40,7 @@ protected:
 	virtual void setUpTestingDataset(void) = 0;
 	virtual void setUpModel(void);
 	virtual void _setUpModel(void) = 0;
+	void setUpResults();
 
 private:
 	void redirectOutput();

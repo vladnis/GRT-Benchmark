@@ -19,8 +19,15 @@ BaseTGTestModel::BaseTGTestModel(TestModelConfig *config)
 	__android_log_write(ANDROID_LOG_VERBOSE, "GRT", "BaseTGTestModel: Successfully loaded data set from file.");
 
 	/* Setup Kfolds */
-	KFolds = 5;
+	KFolds = 4;
 	kFoldTS = NULL;
+
+	/* Set result outut */
+	setUpResults();
+}
+
+void BaseTGTestModel::setUpResults() {
+	// TODO: Delete
 }
 
 void BaseTGTestModel::loadInputDataset() {
@@ -28,8 +35,6 @@ void BaseTGTestModel::loadInputDataset() {
 	if (!inputDataset.loadDatasetFromFile(config->DatasetFilePath)) {
 		throw TestModelException("BaseTGTestModel: Failed to load training data.");
 	}
-	cout << "Number of samples in inputDataset: "  << inputDataset.getNumSamples() << endl;
-	__android_log_write(ANDROID_LOG_VERBOSE, "GRT data from:", config->DatasetFilePath);
 }
 
 void BaseTGTestModel::redirectOutput() {
@@ -78,10 +83,6 @@ BaseTGTestModel::~BaseTGTestModel() {
 bool BaseTGTestModel::runTests(){
 	/* Setup model */
 	setUpModel();
-	__android_log_write(ANDROID_LOG_VERBOSE, "GRT", "BaseTGTestModel: Model successfully set up.");
-
-	//int windowNum = partition / 10;
-	cout << endl << "** Kfolds: " << KFolds << " **" << endl;
 
 	/* Test if dataset has enought instances */
 	for (UINT c = 0; c < inputDataset.getNumClasses(); c++) {
@@ -109,13 +110,9 @@ bool BaseTGTestModel::runTestWindow() {
 	UINT foldSize = kFoldTS->getFoldSize();
 
 	for (GRT::UINT k = 1 ; k < this->KFolds; k++) {
-		cout << "Fold number: " << k << endl;
-		char kFoldNum[100];
-		sprintf(kFoldNum,"BaseTGTestModel: Starting testing for %d kFold.", k);
-		__android_log_write(ANDROID_LOG_VERBOSE, "GRT", kFoldNum);
-
 		UINT incrementSize = 1;
 		for (UINT trainingSetSize = 1; trainingSetSize < foldSize; trainingSetSize+= incrementSize) {
+
 			/* Set up training datasets for current fold */
 			trainingDataset = kFoldTS->getTrainingFoldData(k, trainingSetSize);
 			this->setUpTrainingDataset();
@@ -124,16 +121,11 @@ bool BaseTGTestModel::runTestWindow() {
 			testDataset = kFoldTS->getTestFoldData(k);
 			this->setUpTestingDataset();
 
-			char numInst[100];
-			sprintf(numInst,"BaseTGTestModel: Number of instances: Training: %d; Testing: %d", trainingDataset.getNumSamples(), testDataset.getNumSamples());
-			cout << numInst << endl;
-			__android_log_write(ANDROID_LOG_VERBOSE, "GRT", numInst);
-
 			/* Run test for current fold */
 			runTestFold();
 
 			if ((trainingSetSize > 10) && (incrementSize < 6)) {
-				incrementSize++
+				incrementSize++;
 			}
 		}
 	}
@@ -141,6 +133,9 @@ bool BaseTGTestModel::runTestWindow() {
 }
 
 bool BaseTGTestModel::runTestFold() {
+
+	vector<testModelTime> testTimes(testDataset.getNumSamples());
+
 	if (!(trainingDataset.getNumSamples() > 0) && !(testDataset.getNumSamples() > 0)) {
 		return false;
 	}
@@ -152,13 +147,15 @@ bool BaseTGTestModel::runTestFold() {
 		throw TestModelException("BaseTGTestModel:  Failed to train classifier.\n");
 	}
 	trainingTimer.stop();
-	trainingTimer.printResults("Training Model");
-	__android_log_write(ANDROID_LOG_VERBOSE, "GRT", "BaseTGTestModel: Model successfully trained.");
 
-	cout << "TestSample\tClassLabel\t PredictedClassLabel\t MaximumLikelihood:\tsExecTime\tuExecTime" << endl;;
+	/* Save training speed */
+	modelTraingSpeed trainingSpeed;
+	trainingSpeed.timer = trainingSpeed;
+	trainingSpeed.trainingDatasetSize = trainingDataset.getNumSamples();
+	ModelTraingSpeed.push_back(trainingSpeed);
 
 	//Use the test dataset to test the model
-	double accuracy = 0;
+	double numCorectPredictedTests = 0;
 	for(GRT::UINT i = 0; i < testDataset.getNumSamples(); i++) {
 		//Get the i'th test sample - this is a timeseries
 		GRT::UINT classLabel = testDataset[i].getClassLabel();
@@ -179,26 +176,24 @@ bool BaseTGTestModel::runTestFold() {
 
 		//Update the accuracy
 		if( classLabel == predictedClassLabel ) {
-			accuracy++;
+			numCorectPredictedTests++;
 		}
 
-		char maximumLikelihoodS[100];
-		sprintf(maximumLikelihoodS,"%f", maximumLikelihood);
-		cout << i  << "\t" << classLabel << "\t";
-		cout << predictedClassLabel << "\t" << maximumLikelihoodS << "\t";
-		cout << predictTimer.getSExecutionTime() << "\t" << predictTimer.getUExecutionTime() << endl;
-
-		char datasetNum[100];
-		sprintf(datasetNum,"BaseTGTestModel:  %d dataset tested.",i);
-		__android_log_write(ANDROID_LOG_VERBOSE, "GRT", datasetNum);
+		/* Save test Result */
+		testModelTime currentTestTime;
+		currentTestTime.timer = predictTimer;
+		currentTestTime.SampleSize = testDataset[i].getLength();
 	}
-	__android_log_write(ANDROID_LOG_VERBOSE, "GRT", "BaseTGTestModel:  Model succesfully tested");
 
 	/* Calculate test accuracy for current fold */
-	/* Accuracy = number of test instances correctly predicted / total number of test intances */
-	char floattNum[100];
-	sprintf(floattNum,"%f", accuracy/double(testDataset.getNumSamples())*100.0);
-	cout << "Test Accuracy: " << floattNum << "%" << endl << endl;
+	double accuracy = numCorectPredictedTests / double(testDataset.getNumSamples())*100.0;
+
+	/* Save tests results */
+	testModelResult testResult;
+	testResult.accuracy = accuracy;
+	testResult.timers = testTimes;
+
+	TestModelResults.push_back(testResult);
 
 	return true;
 }
@@ -208,5 +203,4 @@ void BaseTGTestModel::setUpModel() {
 	timer.start();
 	_setUpModel();
 	timer.stop();
-	timer.printResults("Setup model.");
 }

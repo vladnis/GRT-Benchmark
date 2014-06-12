@@ -2,12 +2,14 @@ obj/local/armeabi/objs/TestModel/TestModels/Temporal-gestures/DynamicTimeWarping
  jni/TestModels/Temporal-gestures/DynamicTimeWarping/DynamicTimeWarping.cpp \
  jni/TestModels/Temporal-gestures/DynamicTimeWarping/DynamicTimeWarping.h \
  jni/TestModels/Temporal-gestures/DynamicTimeWarping/../BaseTGTestModel.h \
- jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Abstract/AbstractTestModel.h \
- jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Abstract/../Structures/TestModelConfig.h \
- /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/jni.h \
+ /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/string.h \
  /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/sys/cdefs.h \
  /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/sys/cdefs_elf.h \
  /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/android/api-level.h \
+ /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/malloc.h \
+ jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Abstract/AbstractTestModel.h \
+ jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Abstract/../Structures/TestModelConfig.h \
+ /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/jni.h \
  jni/GRTlib/include/GRT.h jni/GRTlib/include/Util/GRTVersionInfo.h \
  jni/GRTlib/include/Util/GRTCommon.h \
  /home/vlad/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/iostream \
@@ -245,23 +247,29 @@ obj/local/armeabi/objs/TestModel/TestModels/Temporal-gestures/DynamicTimeWarping
  /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/linux/resource.h \
  /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/asm/resource.h \
  /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/asm-generic/resource.h \
- jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Structures/KfoldTimeSeriesData.h
+ jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Structures/KfoldTimeSeriesData.h \
+ jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Structures/TestModelResult.h \
+ jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Structures/TestModelTimer.h
 
 jni/TestModels/Temporal-gestures/DynamicTimeWarping/DynamicTimeWarping.h:
 
 jni/TestModels/Temporal-gestures/DynamicTimeWarping/../BaseTGTestModel.h:
 
-jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Abstract/AbstractTestModel.h:
-
-jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Abstract/../Structures/TestModelConfig.h:
-
-/home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/jni.h:
+/home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/string.h:
 
 /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/sys/cdefs.h:
 
 /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/sys/cdefs_elf.h:
 
 /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/android/api-level.h:
+
+/home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/malloc.h:
+
+jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Abstract/AbstractTestModel.h:
+
+jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Abstract/../Structures/TestModelConfig.h:
+
+/home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/jni.h:
 
 jni/GRTlib/include/GRT.h:
 
@@ -762,3 +770,7 @@ jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Structures/TestModelTi
 /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/asm-generic/resource.h:
 
 jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Structures/KfoldTimeSeriesData.h:
+
+jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Structures/TestModelResult.h:
+
+jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Structures/TestModelTimer.h:

@@ -13,7 +13,7 @@
 #include "GRT.h"
 #include <android/log.h>
 
-class AbstractTestModel {
+class AbstractTestModel{
 protected:
 	TestModelConfig *config;
 
