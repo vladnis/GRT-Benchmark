@@ -243,7 +243,8 @@ obj/local/armeabi/objs/TestModel/TestModels/Temporal-gestures/BaseTGTestModel.o:
  /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/sys/resource.h \
  /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/linux/resource.h \
  /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/asm/resource.h \
- /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/asm-generic/resource.h
+ /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/asm-generic/resource.h \
+ jni/TestModels/Temporal-gestures/../Structures/KfoldTimeSeriesData.h
 
 jni/TestModels/Temporal-gestures/BaseTGTestModel.h:
 
@@ -756,3 +757,5 @@ jni/TestModels/Temporal-gestures/../Structures/TestModelTimer.h:
 /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/asm/resource.h:
 
 /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/asm-generic/resource.h:
+
+jni/TestModels/Temporal-gestures/../Structures/KfoldTimeSeriesData.h:

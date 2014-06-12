@@ -348,28 +348,28 @@ public:
      
      @return returns true the observer was added, false otherwise
      */
-    bool registerTrainingResultsObserver( GRT::Observer< TrainingResult > &observer );
+    bool registerTrainingResultsObserver( Observer< TrainingResult > &observer );
     
     /**
      Registers the observer with the test result observer manager. The observer will then be notified when any new test result is computed.
      
      @return returns true the observer was added, false otherwise
      */
-    bool registerTestResultsObserver( GRT::Observer< TestInstanceResult > &observer );
+    bool registerTestResultsObserver( Observer< TestInstanceResult > &observer );
     
     /**
      Removes the observer from the training result observer manager.
      
      @return returns true if the observer was removed, false otherwise
      */
-    bool removeTrainingResultsObserver( const GRT::Observer< TrainingResult > &observer );
+    bool removeTrainingResultsObserver( const Observer< TrainingResult > &observer );
     
     /**
      Removes the observer from the test result observer manager.
      
      @return returns true if the observer was removed, false otherwise
      */
-    bool removeTestResultsObserver( const GRT::Observer< TestInstanceResult > &observer );
+    bool removeTestResultsObserver( const Observer< TestInstanceResult > &observer );
     
     /**
      Removes all observers from the training result observer manager.

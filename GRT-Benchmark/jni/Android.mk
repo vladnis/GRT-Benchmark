@@ -18,6 +18,7 @@ LOCAL_MODULE    := TestModel
 LOCAL_SRC_FILES := TestModels/Structures/TestModelConfig.cpp
 LOCAL_SRC_FILES += TestModels/Structures/TestModelException.cpp
 LOCAL_SRC_FILES += TestModels/Structures/TestModelTimer.cpp
+LOCAL_SRC_FILES += TestModels/Structures/KfoldTimeSeriesData.cpp
 
 LOCAL_SRC_FILES += TestModels/Abstract/AbstractTestModel.cpp
 

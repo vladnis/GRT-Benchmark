@@ -8,18 +8,27 @@
 #ifndef KFOLDTIMESERIESDATA_H_
 #define KFOLDTIMESERIESDATA_H_
 
+#include "GRT.h"
+using namespace std;
+using namespace GRT;
 
 class KfoldTimeSeriesData {
-private:
-	GRT::LabelledTimeSeriesClassificationData inputDataset;
-	std::vector< std::vector< GRT::UINT > > crossValidationIndexs;
+protected:
+	LabelledTimeSeriesClassificationData inputDataset;
+	vector< vector< UINT > > crossValidationIndexs;
 	bool crossValidationSetup;
-	GRT::UINT 	kFoldValue;
+	UINT 	kFoldValue;
+	UINT numDimensions;
+	vector< ClassTracker > classTracker;
 
 public:
-	KfoldTimeSeriesData(GRT::LabelledTimeSeriesClassificationData);
+	KfoldTimeSeriesData(LabelledTimeSeriesClassificationData);
 	virtual ~KfoldTimeSeriesData();
-	bool generateKFold(const GRT::UINT, GRT::UINT);
+	bool spiltDataIntoKFolds(const UINT);
+	LabelledTimeSeriesClassificationData getTestFoldData(const UINT) const;
+	LabelledTimeSeriesClassificationData getTrainingFoldData(const UINT,  const UINT) const;
+	UINT getFoldSize();
+
 };
 
 #endif /* KFOLDTIMESERIESDATA_H_ */

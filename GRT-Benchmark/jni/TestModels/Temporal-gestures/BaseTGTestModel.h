@@ -12,6 +12,7 @@
 #include <string.h>
 #include "../Structures/TestModelException.h"
 #include "../Structures/TestModelTimer.h"
+#include "../Structures/KfoldTimeSeriesData.h"
 
 class BaseTGTestModel: public AbstractTestModel {
 
@@ -19,12 +20,12 @@ protected:
 	GRT::LabelledTimeSeriesClassificationData trainingDataset;
 	GRT::LabelledTimeSeriesClassificationData testDataset;
 	GRT::Classifier *model;
+	KfoldTimeSeriesData *kFoldTS;
 
 private:
 	GRT::LabelledTimeSeriesClassificationData inputDataset;
-	GRT::LabelledTimeSeriesClassificationData originalInputDataset;
 	std::ofstream *outStream, *errStream, *logStream;
-	int KFolds, originalKFolds;
+	int KFolds;
 
 public:
 	BaseTGTestModel(TestModelConfig *);

@@ -19,7 +19,8 @@ BaseTGTestModel::BaseTGTestModel(TestModelConfig *config)
 	__android_log_write(ANDROID_LOG_VERBOSE, "GRT", "BaseTGTestModel: Successfully loaded data set from file.");
 
 	/* Setup Kfolds */
-	originalKFolds = 10;
+	KFolds = 5;
+	kFoldTS = NULL;
 }
 
 void BaseTGTestModel::loadInputDataset() {
@@ -27,7 +28,7 @@ void BaseTGTestModel::loadInputDataset() {
 	if (!inputDataset.loadDatasetFromFile(config->DatasetFilePath)) {
 		throw TestModelException("BaseTGTestModel: Failed to load training data.");
 	}
-	originalInputDataset = inputDataset;
+	cout << "Number of samples in inputDataset: "  << inputDataset.getNumSamples() << endl;
 	__android_log_write(ANDROID_LOG_VERBOSE, "GRT data from:", config->DatasetFilePath);
 }
 
@@ -79,78 +80,71 @@ bool BaseTGTestModel::runTests(){
 	setUpModel();
 	__android_log_write(ANDROID_LOG_VERBOSE, "GRT", "BaseTGTestModel: Model successfully set up.");
 
-	for (GRT::UINT windowNum = 1; windowNum <= 10; windowNum ++) {
-		//int windowNum = partition / 10;
-		cout << endl<< "** Window " << windowNum << " **" << endl;
+	//int windowNum = partition / 10;
+	cout << endl << "** Kfolds: " << KFolds << " **" << endl;
 
-		/* Set up input dataset */
-		// inputDataset = originalInputDataset;
-		// GRT::LabelledTimeSeriesClassificationData aux;
-		// aux = inputDataset.partition(100 - partition, true);
-		// inputDataset = aux;
-
-		int numSamplesPerClass = inputDataset.getNumSamples() / inputDataset.getNumClasses();
-		if (numSamplesPerClass < 2) {
-			continue;
+	/* Test if dataset has enought instances */
+	for (UINT c = 0; c < inputDataset.getNumClasses(); c++) {
+		if (inputDataset[c].getLength() < 2) {
+			throw TestModelException("BaseTGTestModel: Input dataset is not big enough!");
+			return false;
 		}
-
-		/* Set up number of Folds */
-		// KFolds = originalKFolds;
-		//if (numSamplesPerClass <= KFolds) {
-		// KFolds = numSamplesPerClass - 1;
-		//}
-		KFolds = windowNum;
-
-		/* Logging */
-		char numInst[100];
-		sprintf(numInst,"Number of input instances: %d; Number of classes: %d; KFolds: %d; Num Samples per class: %d",
-				inputDataset.getNumSamples(), inputDataset.getNumClasses(), KFolds, numSamplesPerClass);
-		cout << numInst << endl;
-		__android_log_write(ANDROID_LOG_VERBOSE, "GRT", numInst);
-
-		/* Separate input dataset using KFold */
-		if( !inputDataset.spiltDataIntoKFolds(KFolds, true) ) {
-			continue;
-			// throw TestModelException("BaseTGTestModel: Failed to spiltDataIntoKFolds!\n");
-		}
-
-		/* Run tests for current window */
-		runTestWindow();
 	}
+
+	/* Separate input dataset using KFold */
+	kFoldTS  = new KfoldTimeSeriesData(inputDataset);
+	if( !kFoldTS->spiltDataIntoKFolds(KFolds) ) {
+		throw TestModelException("BaseTGTestModel: Failed to spiltDataIntoKFolds!");
+	}
+
+	/* Run tests for current window */
+	runTestWindow();
+
+	delete(kFoldTS);
 
 	return true;
 }
 
 bool BaseTGTestModel::runTestWindow() {
+	UINT foldSize = kFoldTS->getFoldSize();
 
-	for (GRT::UINT k = 0 ; k < this->KFolds; k++) {
+	for (GRT::UINT k = 1 ; k < this->KFolds; k++) {
 		cout << "Fold number: " << k << endl;
 		char kFoldNum[100];
 		sprintf(kFoldNum,"BaseTGTestModel: Starting testing for %d kFold.", k);
 		__android_log_write(ANDROID_LOG_VERBOSE, "GRT", kFoldNum);
 
-		/* Set up training datasets for current fold */
-		trainingDataset = inputDataset.getTrainingFoldData(k);
-		this->setUpTrainingDataset();
+		UINT incrementSize = 1;
+		for (UINT trainingSetSize = 1; trainingSetSize < foldSize; trainingSetSize+= incrementSize) {
+			/* Set up training datasets for current fold */
+			trainingDataset = kFoldTS->getTrainingFoldData(k, trainingSetSize);
+			this->setUpTrainingDataset();
 
-		/* Set up validation datasets for current fold */
-		testDataset = inputDataset.getTestFoldData(k);
-		this->setUpTestingDataset();
+			/* Set up validation datasets for current fold */
+			testDataset = kFoldTS->getTestFoldData(k);
+			this->setUpTestingDataset();
 
-		char numInst[100];
-		sprintf(numInst,"BaseTGTestModel: Number of instances: Training: %d; Testing: %d", trainingDataset.getNumSamples(), testDataset.getNumSamples());
-		cout << numInst << endl;
-		__android_log_write(ANDROID_LOG_VERBOSE, "GRT", numInst);
+			char numInst[100];
+			sprintf(numInst,"BaseTGTestModel: Number of instances: Training: %d; Testing: %d", trainingDataset.getNumSamples(), testDataset.getNumSamples());
+			cout << numInst << endl;
+			__android_log_write(ANDROID_LOG_VERBOSE, "GRT", numInst);
 
-		if ((trainingDataset.getNumSamples() > 0) && (testDataset.getNumSamples() > 0)) {
+			/* Run test for current fold */
 			runTestFold();
+
+			if ((trainingSetSize > 10) && (incrementSize < 6)) {
+				incrementSize++
+			}
 		}
 	}
-
 	return true;
 }
 
 bool BaseTGTestModel::runTestFold() {
+	if (!(trainingDataset.getNumSamples() > 0) && !(testDataset.getNumSamples() > 0)) {
+		return false;
+	}
+
 	/* Traing model */
 	TestModelTimer trainingTimer;
 	trainingTimer.start();

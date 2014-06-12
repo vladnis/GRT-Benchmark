@@ -6,6 +6,7 @@
 #include "Structures/TestModelConfig.h"
 #include "Structures/TestModelException.h"
 #include "Structures/TestModelTimer.h"
+#include "Structures/KfoldTimeSeriesData.h"
 
 #include "Temporal-gestures/BaseTGTestModel.h"
 #include "Temporal-gestures/DynamicTimeWarping/DynamicTimeWarping.h"
