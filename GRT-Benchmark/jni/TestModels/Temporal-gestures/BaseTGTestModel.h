@@ -11,6 +11,7 @@
 #include "../Abstract/AbstractTestModel.h"
 #include <string.h>
 #include "../Structures/TestModelException.h"
+#include "../Structures/TestModelTimer.h"
 
 class BaseTGTestModel: public AbstractTestModel {
 
@@ -21,8 +22,9 @@ protected:
 
 private:
 	GRT::LabelledTimeSeriesClassificationData inputDataset;
+	GRT::LabelledTimeSeriesClassificationData originalInputDataset;
 	std::ofstream *outStream, *errStream, *logStream;
-	int KFolds;
+	int KFolds, originalKFolds;
 
 public:
 	BaseTGTestModel(TestModelConfig *);
@@ -32,11 +34,14 @@ public:
 protected:
 	virtual void setUpTrainingDataset(void) = 0;
 	virtual void setUpTestingDataset(void) = 0;
-	virtual void setUpModel(void) = 0;
+	virtual void setUpModel(void);
+	virtual void _setUpModel(void) = 0;
 
 private:
 	void redirectOutput();
 	void loadInputDataset();
+	bool runTestWindow();
+	bool runTestFold();
 };
 
 #endif /* BASETGTESTMODEL_H_ */

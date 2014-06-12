@@ -23,7 +23,7 @@ public:
 protected:
 	void setUpTrainingDataset();
 	void setUpTestingDataset();
-	void setUpModel(void);
+	void _setUpModel(void);
 };
 
 #endif /* HIDDENMARKOVMODELS_H_ */

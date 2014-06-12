@@ -240,9 +240,15 @@ obj/local/armeabi/objs/GRTwrapper/GRTwrapper.o: jni/GRTwrapper.cpp \
  /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/android/log.h \
  jni/TestModels/Structures/TestModelConfig.h \
  jni/TestModels/Structures/TestModelException.h \
+ jni/TestModels/Structures/TestModelTimer.h \
+ /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/sys/resource.h \
+ /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/linux/resource.h \
+ /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/asm/resource.h \
+ /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/asm-generic/resource.h \
  jni/TestModels/Temporal-gestures/BaseTGTestModel.h \
  jni/TestModels/Temporal-gestures/../Abstract/AbstractTestModel.h \
  jni/TestModels/Temporal-gestures/../Structures/TestModelException.h \
+ jni/TestModels/Temporal-gestures/../Structures/TestModelTimer.h \
  jni/TestModels/Temporal-gestures/DynamicTimeWarping/DynamicTimeWarping.h \
  jni/TestModels/Temporal-gestures/DynamicTimeWarping/../BaseTGTestModel.h \
  jni/TestModels/Temporal-gestures/HiddenMarkovModels/HiddenMarkovModels.h \
@@ -758,11 +764,23 @@ jni/TestModels/Structures/TestModelConfig.h:
 
 jni/TestModels/Structures/TestModelException.h:
 
+jni/TestModels/Structures/TestModelTimer.h:
+
+/home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/sys/resource.h:
+
+/home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/linux/resource.h:
+
+/home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/asm/resource.h:
+
+/home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/asm-generic/resource.h:
+
 jni/TestModels/Temporal-gestures/BaseTGTestModel.h:
 
 jni/TestModels/Temporal-gestures/../Abstract/AbstractTestModel.h:
 
 jni/TestModels/Temporal-gestures/../Structures/TestModelException.h:
+
+jni/TestModels/Temporal-gestures/../Structures/TestModelTimer.h:
 
 jni/TestModels/Temporal-gestures/DynamicTimeWarping/DynamicTimeWarping.h:
 

@@ -18,7 +18,7 @@ HiddenMarkovModels::~HiddenMarkovModels() {
 	delete quantizer;
 }
 
-void HiddenMarkovModels::setUpModel() {
+void HiddenMarkovModels::_setUpModel() {
 	/* Setup model */
 	model = new GRT::HMM();
 
