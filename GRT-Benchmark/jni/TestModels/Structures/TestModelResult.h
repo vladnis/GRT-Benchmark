@@ -15,33 +15,39 @@
 using namespace GRT;
 using namespace std;
 
-struct testModelTime {
+struct testModelExecTime {
 	UINT SampleSize;
 	TestModelTimer timer;
 };
 
-struct testModelResult {
+struct ModelTestResult {
 	UINT trainingDatasetSize;
 	UINT testDatasetSize;
 	UINT accuracy;
-	vector<testModelTime> timers;
+	vector<testModelExecTime> execTimeList;
 };
 
-struct modelTraingSpeed {
+struct ModelTraingResult {
 	UINT trainingDatasetSize;
-	testModelTime timer;
+	UINT numTests;
+	TestModelTimerResults totalSysTime, totalUserTime;
 };
 
 class TestModelResult {
-public:
-	vector< testModelResult > TestModelResults;
-	vector <modelTraingSpeed> ModelTraingSpeed;
+private:
+	vector< ModelTestResult > testResults;
+	vector <ModelTraingResult> traingResults;
 
 public:
 	TestModelResult();
 	virtual ~TestModelResult();
-	void printResults();
 	virtual void setUpResults() = 0;
+
+	void printPredictionsResults();
+	void printTrainingResults();
+
+	void addTrainingResult(unsigned int trainingNumSamples, TestModelTimer timer);
+	void addPredictionResult(ModelTestResult);
 };
 
 #endif /* TESTMODELRESULT_H_ */

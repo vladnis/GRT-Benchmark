@@ -10,6 +10,7 @@ obj/local/armeabi/objs/TestModel/TestModels/Temporal-gestures/DynamicTimeWarping
  jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Abstract/AbstractTestModel.h \
  jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Abstract/../Structures/TestModelConfig.h \
  /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/jni.h \
+ jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Abstract/../Structures/TestModelResult.h \
  jni/GRTlib/include/GRT.h jni/GRTlib/include/Util/GRTVersionInfo.h \
  jni/GRTlib/include/Util/GRTCommon.h \
  /home/vlad/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/iostream \
@@ -240,16 +241,16 @@ obj/local/armeabi/objs/TestModel/TestModels/Temporal-gestures/DynamicTimeWarping
  jni/GRTlib/include/CoreModules/../DataStructures/LabelledContinuousTimeSeriesClassificationData.h \
  jni/GRTlib/include/CoreModules/../Util/ClassificationResult.h \
  jni/GRTlib/include/CoreModules/../Util/TestResult.h \
- /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/android/log.h \
- jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Structures/TestModelException.h \
- jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Structures/TestModelTimer.h \
+ jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Abstract/../Structures/TestModelTimer.h \
  /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/sys/resource.h \
  /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/linux/resource.h \
  /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/asm/resource.h \
  /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/asm-generic/resource.h \
+ /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/android/log.h \
+ jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Structures/TestModelException.h \
+ jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Structures/TestModelTimer.h \
  jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Structures/KfoldTimeSeriesData.h \
- jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Structures/TestModelResult.h \
- jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Structures/TestModelTimer.h
+ jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Structures/TestModelResult.h
 
 jni/TestModels/Temporal-gestures/DynamicTimeWarping/DynamicTimeWarping.h:
 
@@ -270,6 +271,8 @@ jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Abstract/AbstractTestM
 jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Abstract/../Structures/TestModelConfig.h:
 
 /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/jni.h:
+
+jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Abstract/../Structures/TestModelResult.h:
 
 jni/GRTlib/include/GRT.h:
 
@@ -755,11 +758,7 @@ jni/GRTlib/include/CoreModules/../Util/ClassificationResult.h:
 
 jni/GRTlib/include/CoreModules/../Util/TestResult.h:
 
-/home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/android/log.h:
-
-jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Structures/TestModelException.h:
-
-jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Structures/TestModelTimer.h:
+jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Abstract/../Structures/TestModelTimer.h:
 
 /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/sys/resource.h:
 
@@ -769,8 +768,12 @@ jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Structures/TestModelTi
 
 /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/asm-generic/resource.h:
 
+/home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/android/log.h:
+
+jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Structures/TestModelException.h:
+
+jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Structures/TestModelTimer.h:
+
 jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Structures/KfoldTimeSeriesData.h:
 
 jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Structures/TestModelResult.h:
-
-jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Structures/TestModelTimer.h:

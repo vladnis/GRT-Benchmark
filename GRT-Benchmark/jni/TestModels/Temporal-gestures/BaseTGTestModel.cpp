@@ -81,6 +81,9 @@ BaseTGTestModel::~BaseTGTestModel() {
 }
 
 bool BaseTGTestModel::runTests(){
+
+	__android_log_print(ANDROID_LOG_VERBOSE, "GRT", "Starting testing");
+
 	/* Setup model */
 	setUpModel();
 
@@ -103,15 +106,23 @@ bool BaseTGTestModel::runTests(){
 
 	delete(kFoldTS);
 
+	__android_log_print(ANDROID_LOG_VERBOSE, "GRT", "Testing ended");
 	return true;
 }
 
 bool BaseTGTestModel::runTestWindow() {
 	UINT foldSize = kFoldTS->getFoldSize();
 
-	for (GRT::UINT k = 1 ; k < this->KFolds; k++) {
+	for (GRT::UINT k = 1 ; k < KFolds; k++) {
+
+		__android_log_print(ANDROID_LOG_VERBOSE, "GRT", "Running tests for: %d fold", k);
+
 		UINT incrementSize = 1;
-		for (UINT trainingSetSize = 1; trainingSetSize < foldSize; trainingSetSize+= incrementSize) {
+
+		// foldSize
+		for (UINT trainingSetSize = 1; trainingSetSize < 20; trainingSetSize += incrementSize) {
+
+			__android_log_print(ANDROID_LOG_VERBOSE, "GRT", "Running tests for: %d training set size", trainingSetSize);
 
 			/* Set up training datasets for current fold */
 			trainingDataset = kFoldTS->getTrainingFoldData(k, trainingSetSize);
@@ -134,8 +145,6 @@ bool BaseTGTestModel::runTestWindow() {
 
 bool BaseTGTestModel::runTestFold() {
 
-	vector<testModelTime> testTimes(testDataset.getNumSamples());
-
 	if (!(trainingDataset.getNumSamples() > 0) && !(testDataset.getNumSamples() > 0)) {
 		return false;
 	}
@@ -149,10 +158,11 @@ bool BaseTGTestModel::runTestFold() {
 	trainingTimer.stop();
 
 	/* Save training speed */
-	modelTraingSpeed trainingSpeed;
-	trainingSpeed.timer = trainingSpeed;
-	trainingSpeed.trainingDatasetSize = trainingDataset.getNumSamples();
-	ModelTraingSpeed.push_back(trainingSpeed);
+	ModelTraingResult trainingResult;
+	addTrainingResult(trainingDataset.getNumSamples(), trainingTimer);
+
+	/* Used for saving test analysis */
+	vector<testModelExecTime> testTimes;
 
 	//Use the test dataset to test the model
 	double numCorectPredictedTests = 0;
@@ -180,20 +190,23 @@ bool BaseTGTestModel::runTestFold() {
 		}
 
 		/* Save test Result */
-		testModelTime currentTestTime;
+		testModelExecTime currentTestTime;
 		currentTestTime.timer = predictTimer;
 		currentTestTime.SampleSize = testDataset[i].getLength();
+		testTimes.push_back(currentTestTime);
 	}
 
 	/* Calculate test accuracy for current fold */
 	double accuracy = numCorectPredictedTests / double(testDataset.getNumSamples())*100.0;
 
 	/* Save tests results */
-	testModelResult testResult;
+	ModelTestResult testResult;
 	testResult.accuracy = accuracy;
-	testResult.timers = testTimes;
+	testResult.execTimeList = testTimes;
+	testResult.trainingDatasetSize = trainingDataset.getNumSamples();
+	testResult.testDatasetSize = testDataset.getNumSamples();
 
-	TestModelResults.push_back(testResult);
+	addPredictionResult(testResult);
 
 	return true;
 }

@@ -9,11 +9,12 @@
 #define ABSTRACTPIPELINE_H_
 
 #include "../Structures/TestModelConfig.h"
+#include "../Structures/TestModelResult.h"
 #include <stddef.h>
 #include "GRT.h"
 #include <android/log.h>
 
-class AbstractTestModel{
+class AbstractTestModel: public TestModelResult {
 protected:
 	TestModelConfig *config;
 

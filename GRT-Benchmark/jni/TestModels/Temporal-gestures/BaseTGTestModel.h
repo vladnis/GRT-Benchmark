@@ -17,7 +17,7 @@
 #include "../Structures/KfoldTimeSeriesData.h"
 #include "../Structures/TestModelResult.h"
 
-class BaseTGTestModel: public AbstractTestModel, public TestModelResult {
+class BaseTGTestModel: public AbstractTestModel {
 
 protected:
 	GRT::LabelledTimeSeriesClassificationData trainingDataset;

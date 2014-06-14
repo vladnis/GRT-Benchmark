@@ -10,30 +10,18 @@
 TestModelTimer::TestModelTimer() {
 	isStarted = false;
 	isStoped = false;
-	uExecutionTime = NULL;
-	sExecutionTime = NULL;
+	userExecutionTime.executionTimeSec = 0;
+	userExecutionTime.executionTimeU = 0;
+	sysExecutionTime.executionTimeSec = 0;
+	sysExecutionTime.executionTimeU = 0;
 }
 
 TestModelTimer::~TestModelTimer() {
-	if (uExecutionTime != NULL) {
-		free(uExecutionTime);
-	}
-	if (sExecutionTime != NULL) {
-		free(sExecutionTime);
-	}
 }
 
 void TestModelTimer::start() {
 	isStarted = true;
 	isStoped = false;
-	if (isStoped) {
-		if (uExecutionTime != NULL) {
-			free(uExecutionTime);
-		}
-		if (sExecutionTime != NULL) {
-			free(sExecutionTime);
-		}
-	}
 	getrusage(RUSAGE_SELF, &startUsage);
 }
 
@@ -51,8 +39,8 @@ void TestModelTimer::stop() {
 		uSecDif--;
 		uMicDif += 1000000;
 	}
-	uExecutionTime = (char *) malloc(1000);
-	sprintf(uExecutionTime, "%ld.%lds", uSecDif, uMicDif);
+	userExecutionTime.executionTimeSec = uSecDif;
+	userExecutionTime.executionTimeU = uMicDif;
 
 	long int sSecDif = endUsage.ru_stime.tv_sec - startUsage.ru_stime.tv_sec;
 	long int sMicDif = endUsage.ru_stime.tv_usec - startUsage.ru_stime.tv_usec;
@@ -60,29 +48,15 @@ void TestModelTimer::stop() {
 		sSecDif--;
 		sMicDif += 1000000;
 	}
-	sExecutionTime = (char *) malloc(1000);
-	sprintf(sExecutionTime, "%ld.%lds", sSecDif, sMicDif);
+	sysExecutionTime.executionTimeSec = sSecDif;
+	sysExecutionTime.executionTimeU = sMicDif;
 }
 
-char *TestModelTimer::getUExecutionTime() {
-	return uExecutionTime;
+TestModelTimerResults TestModelTimer::getUExecutionTime() {
+	return userExecutionTime;
 }
 
-char *TestModelTimer::getSExecutionTime() {
-	return sExecutionTime;
-}
-
-void TestModelTimer::printUExecutionTime() {
-	std::cout << "User time:\t" << getUExecutionTime() << std::endl;
-}
-
-void TestModelTimer::printSExecutionTime() {
-	std::cout << "System time:\t" << getSExecutionTime() << std::endl;
-}
-
-void TestModelTimer::printResults(std::string tag) {
-	std::cout << "Timer Tag:\t" << tag << std::endl;
-	printUExecutionTime();
-	printSExecutionTime();
+TestModelTimerResults TestModelTimer::getSExecutionTime() {
+	return sysExecutionTime;
 }
 

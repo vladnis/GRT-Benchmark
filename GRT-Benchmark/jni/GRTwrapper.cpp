@@ -33,6 +33,7 @@ namespace grt_wrapper {
 				throw TestModelException("Can not identify test model.");
 			}
 			model->runTests();
+			model->printTrainingResults();
 			delete(model);
 		} catch (exception& e) {
 			__android_log_write(ANDROID_LOG_ERROR, "GRT", e.what());

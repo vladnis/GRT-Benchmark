@@ -15,22 +15,47 @@
 #include <stdio.h>
 #include <iostream>
 
+struct TestModelTimerResults {
+	unsigned long int executionTimeSec, executionTimeU;
+};
+
 class TestModelTimer {
 private:
 	struct rusage startUsage, endUsage;
 	bool isStarted, isStoped;
-	char *uExecutionTime , *sExecutionTime;
+	TestModelTimerResults userExecutionTime;
+	TestModelTimerResults sysExecutionTime;
 
 public:
 	TestModelTimer();
 	virtual ~TestModelTimer();
 	void start();
 	void stop();
-	char *getUExecutionTime();
-	char *getSExecutionTime();
-	void printUExecutionTime();
-	void printSExecutionTime();
-	void printResults(std::string  tag);
+	TestModelTimerResults getUExecutionTime();
+	TestModelTimerResults getSExecutionTime();
+
+	static TestModelTimerResults addTimerResults(TestModelTimerResults elem1, TestModelTimerResults elem2){
+		unsigned long int sTime = elem1.executionTimeSec + elem2.executionTimeSec;
+		unsigned long int uTime = elem1.executionTimeU + elem2.executionTimeU;
+		if (uTime > 10000000) {
+			sTime += uTime / 10000000;
+			uTime = uTime % 10000000;
+		}
+		TestModelTimerResults result;
+		result.executionTimeSec = sTime;
+		result.executionTimeU = uTime;
+		return result;
+	}
+
+	TestModelTimer * operator= (TestModelTimer *source) {
+		startUsage = source->startUsage;
+		endUsage = source->endUsage;
+		isStarted = source->isStarted;
+		isStoped = source->isStoped;
+		userExecutionTime = source->userExecutionTime;
+		sysExecutionTime = source->sysExecutionTime;
+		return this;
+	}
 };
 
 #endif /* TESTMODELTIMER_H_ */

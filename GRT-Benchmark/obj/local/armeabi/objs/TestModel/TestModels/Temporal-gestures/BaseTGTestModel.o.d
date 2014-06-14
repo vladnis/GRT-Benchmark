@@ -9,6 +9,7 @@ obj/local/armeabi/objs/TestModel/TestModels/Temporal-gestures/BaseTGTestModel.o:
  jni/TestModels/Temporal-gestures/../Abstract/AbstractTestModel.h \
  jni/TestModels/Temporal-gestures/../Abstract/../Structures/TestModelConfig.h \
  /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/jni.h \
+ jni/TestModels/Temporal-gestures/../Abstract/../Structures/TestModelResult.h \
  jni/GRTlib/include/GRT.h jni/GRTlib/include/Util/GRTVersionInfo.h \
  jni/GRTlib/include/Util/GRTCommon.h \
  /home/vlad/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/iostream \
@@ -239,16 +240,16 @@ obj/local/armeabi/objs/TestModel/TestModels/Temporal-gestures/BaseTGTestModel.o:
  jni/GRTlib/include/CoreModules/../DataStructures/LabelledContinuousTimeSeriesClassificationData.h \
  jni/GRTlib/include/CoreModules/../Util/ClassificationResult.h \
  jni/GRTlib/include/CoreModules/../Util/TestResult.h \
- /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/android/log.h \
- jni/TestModels/Temporal-gestures/../Structures/TestModelException.h \
- jni/TestModels/Temporal-gestures/../Structures/TestModelTimer.h \
+ jni/TestModels/Temporal-gestures/../Abstract/../Structures/TestModelTimer.h \
  /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/sys/resource.h \
  /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/linux/resource.h \
  /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/asm/resource.h \
  /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/asm-generic/resource.h \
+ /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/android/log.h \
+ jni/TestModels/Temporal-gestures/../Structures/TestModelException.h \
+ jni/TestModels/Temporal-gestures/../Structures/TestModelTimer.h \
  jni/TestModels/Temporal-gestures/../Structures/KfoldTimeSeriesData.h \
- jni/TestModels/Temporal-gestures/../Structures/TestModelResult.h \
- jni/TestModels/Temporal-gestures/../Structures/TestModelTimer.h
+ jni/TestModels/Temporal-gestures/../Structures/TestModelResult.h
 
 jni/TestModels/Temporal-gestures/BaseTGTestModel.h:
 
@@ -267,6 +268,8 @@ jni/TestModels/Temporal-gestures/../Abstract/AbstractTestModel.h:
 jni/TestModels/Temporal-gestures/../Abstract/../Structures/TestModelConfig.h:
 
 /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/jni.h:
+
+jni/TestModels/Temporal-gestures/../Abstract/../Structures/TestModelResult.h:
 
 jni/GRTlib/include/GRT.h:
 
@@ -752,11 +755,7 @@ jni/GRTlib/include/CoreModules/../Util/ClassificationResult.h:
 
 jni/GRTlib/include/CoreModules/../Util/TestResult.h:
 
-/home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/android/log.h:
-
-jni/TestModels/Temporal-gestures/../Structures/TestModelException.h:
-
-jni/TestModels/Temporal-gestures/../Structures/TestModelTimer.h:
+jni/TestModels/Temporal-gestures/../Abstract/../Structures/TestModelTimer.h:
 
 /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/sys/resource.h:
 
@@ -766,8 +765,12 @@ jni/TestModels/Temporal-gestures/../Structures/TestModelTimer.h:
 
 /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/asm-generic/resource.h:
 
+/home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/android/log.h:
+
+jni/TestModels/Temporal-gestures/../Structures/TestModelException.h:
+
+jni/TestModels/Temporal-gestures/../Structures/TestModelTimer.h:
+
 jni/TestModels/Temporal-gestures/../Structures/KfoldTimeSeriesData.h:
 
 jni/TestModels/Temporal-gestures/../Structures/TestModelResult.h:
-
-jni/TestModels/Temporal-gestures/../Structures/TestModelTimer.h:

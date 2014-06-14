@@ -237,17 +237,18 @@ obj/local/armeabi/objs/GRTwrapper/GRTwrapper.o: jni/GRTwrapper.cpp \
  jni/TestModelFactory/TestModelFactory.h jni/TestModels/TestModel.h \
  jni/TestModels/Abstract/AbstractTestModel.h \
  jni/TestModels/Abstract/../Structures/TestModelConfig.h \
- /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/android/log.h \
- jni/TestModels/Structures/TestModelConfig.h \
- jni/TestModels/Structures/TestModelException.h \
- jni/TestModels/Structures/TestModelTimer.h \
+ jni/TestModels/Abstract/../Structures/TestModelResult.h \
+ jni/TestModels/Abstract/../Structures/TestModelTimer.h \
  /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/sys/resource.h \
  /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/linux/resource.h \
  /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/asm/resource.h \
  /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/asm-generic/resource.h \
+ /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/android/log.h \
+ jni/TestModels/Structures/TestModelConfig.h \
+ jni/TestModels/Structures/TestModelException.h \
+ jni/TestModels/Structures/TestModelTimer.h \
  jni/TestModels/Structures/KfoldTimeSeriesData.h \
  jni/TestModels/Structures/TestModelResult.h \
- jni/TestModels/Structures/TestModelTimer.h \
  jni/TestModels/Temporal-gestures/BaseTGTestModel.h \
  jni/TestModels/Temporal-gestures/../Abstract/AbstractTestModel.h \
  jni/TestModels/Temporal-gestures/../Structures/TestModelException.h \
@@ -763,13 +764,9 @@ jni/TestModels/Abstract/AbstractTestModel.h:
 
 jni/TestModels/Abstract/../Structures/TestModelConfig.h:
 
-/home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/android/log.h:
+jni/TestModels/Abstract/../Structures/TestModelResult.h:
 
-jni/TestModels/Structures/TestModelConfig.h:
-
-jni/TestModels/Structures/TestModelException.h:
-
-jni/TestModels/Structures/TestModelTimer.h:
+jni/TestModels/Abstract/../Structures/TestModelTimer.h:
 
 /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/sys/resource.h:
 
@@ -779,11 +776,17 @@ jni/TestModels/Structures/TestModelTimer.h:
 
 /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/asm-generic/resource.h:
 
+/home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/android/log.h:
+
+jni/TestModels/Structures/TestModelConfig.h:
+
+jni/TestModels/Structures/TestModelException.h:
+
+jni/TestModels/Structures/TestModelTimer.h:
+
 jni/TestModels/Structures/KfoldTimeSeriesData.h:
 
 jni/TestModels/Structures/TestModelResult.h:
-
-jni/TestModels/Structures/TestModelTimer.h:
 
 jni/TestModels/Temporal-gestures/BaseTGTestModel.h:
 
