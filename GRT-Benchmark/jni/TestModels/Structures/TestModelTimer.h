@@ -47,6 +47,13 @@ public:
 		return result;
 	}
 
+	inline TestModelTimer *operator+=(TestModelTimer elem2) {
+		TestModelTimer result;
+		this->sysExecutionTime = TestModelTimer::addTimerResults(this->userExecutionTime, elem2.getSExecutionTime());
+		this->userExecutionTime = TestModelTimer::addTimerResults(this->userExecutionTime, elem2.getUExecutionTime());
+		return this;
+	}
+
 	TestModelTimer * operator= (TestModelTimer *source) {
 		startUsage = source->startUsage;
 		endUsage = source->endUsage;

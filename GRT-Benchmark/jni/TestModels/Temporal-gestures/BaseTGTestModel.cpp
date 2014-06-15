@@ -82,7 +82,7 @@ BaseTGTestModel::~BaseTGTestModel() {
 
 bool BaseTGTestModel::runTests(){
 
-	__android_log_print(ANDROID_LOG_VERBOSE, "GRT", "Starting testing");
+	__android_log_print(ANDROID_LOG_WARN, "GRT", "Starting testing");
 
 	/* Setup model */
 	setUpModel();
@@ -106,23 +106,19 @@ bool BaseTGTestModel::runTests(){
 
 	delete(kFoldTS);
 
-	__android_log_print(ANDROID_LOG_VERBOSE, "GRT", "Testing ended");
+	__android_log_print(ANDROID_LOG_WARN, "GRT", "Testing ended");
 	return true;
 }
 
 bool BaseTGTestModel::runTestWindow() {
-	UINT foldSize = kFoldTS->getFoldSize();
+
+	UINT maxTrainigSetSize = inputDataset.getNumSamples() * (KFolds - 1) / (KFolds * inputDataset.getNumClasses());
 
 	for (GRT::UINT k = 1 ; k < KFolds; k++) {
 
-		__android_log_print(ANDROID_LOG_VERBOSE, "GRT", "Running tests for: %d fold", k);
+		__android_log_print(ANDROID_LOG_WARN, "GRT", "Running tests for: %d fold", k);
 
-		UINT incrementSize = 1;
-
-		// foldSize
-		for (UINT trainingSetSize = 1; trainingSetSize < 20; trainingSetSize += incrementSize) {
-
-			__android_log_print(ANDROID_LOG_VERBOSE, "GRT", "Running tests for: %d training set size", trainingSetSize);
+		for (UINT trainingSetSize = inputDataset.getNumClasses(); trainingSetSize <= maxTrainigSetSize; trainingSetSize ++) {
 
 			/* Set up training datasets for current fold */
 			trainingDataset = kFoldTS->getTrainingFoldData(k, trainingSetSize);
@@ -132,12 +128,12 @@ bool BaseTGTestModel::runTestWindow() {
 			testDataset = kFoldTS->getTestFoldData(k);
 			this->setUpTestingDataset();
 
+			/* Log test dataset size */
+			__android_log_print(ANDROID_LOG_VERBOSE, "GRT", "Data set size: training %d; testing %d",
+					trainingDataset.getNumSamples(), testDataset.getNumSamples());
+
 			/* Run test for current fold */
 			runTestFold();
-
-			if ((trainingSetSize > 10) && (incrementSize < 6)) {
-				incrementSize++;
-			}
 		}
 	}
 	return true;
@@ -162,7 +158,7 @@ bool BaseTGTestModel::runTestFold() {
 	addTrainingResult(trainingDataset.getNumSamples(), trainingTimer);
 
 	/* Used for saving test analysis */
-	vector<testModelExecTime> testTimes;
+	vector<PredictionResultExecInfo> testTimes;
 
 	//Use the test dataset to test the model
 	double numCorectPredictedTests = 0;
@@ -170,8 +166,10 @@ bool BaseTGTestModel::runTestFold() {
 		//Get the i'th test sample - this is a timeseries
 		GRT::UINT classLabel = testDataset[i].getClassLabel();
 
+		// Start timer for prediction
 		TestModelTimer predictTimer;
 		predictTimer.start();
+
 		//Perform a prediction using the classifier
 		if( !model->predict( testDataset[i].getData() ) ){
 			throw TestModelException("BaseTGTestModel:  Failed to perform prediction for test sample");
@@ -179,34 +177,27 @@ bool BaseTGTestModel::runTestFold() {
 		predictTimer.stop();
 
 		//Get the predicted class label
+		/*
 		GRT::UINT predictedClassLabel = model->getPredictedClassLabel();
 		double maximumLikelihood =  model->getMaximumLikelihood();
 		GRT::VectorDouble classLikelihoods =  model->getClassLikelihoods();
 		GRT::VectorDouble classDistances =  model->getClassDistances();
+		*/
 
 		//Update the accuracy
-		if( classLabel == predictedClassLabel ) {
+		if( classLabel == model->getPredictedClassLabel() ) {
 			numCorectPredictedTests++;
 		}
 
 		/* Save test Result */
-		testModelExecTime currentTestTime;
-		currentTestTime.timer = predictTimer;
-		currentTestTime.SampleSize = testDataset[i].getLength();
-		testTimes.push_back(currentTestTime);
+		addPredictionTimerResult(predictTimer, testDataset[i].getLength(), trainingDataset.getNumSamples());
 	}
 
 	/* Calculate test accuracy for current fold */
-	double accuracy = numCorectPredictedTests / double(testDataset.getNumSamples())*100.0;
-
+	double accuracy = (double)(numCorectPredictedTests) / double(testDataset.getNumSamples())*100.0;
+	__android_log_print(ANDROID_LOG_ERROR, "GRT", "Accuracy: %f", accuracy);
 	/* Save tests results */
-	ModelTestResult testResult;
-	testResult.accuracy = accuracy;
-	testResult.execTimeList = testTimes;
-	testResult.trainingDatasetSize = trainingDataset.getNumSamples();
-	testResult.testDatasetSize = testDataset.getNumSamples();
-
-	addPredictionResult(testResult);
+	addPredictionResult(accuracy, trainingDataset.getNumSamples());
 
 	return true;
 }

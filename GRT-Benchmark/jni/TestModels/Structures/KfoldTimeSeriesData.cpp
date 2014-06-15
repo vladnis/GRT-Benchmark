@@ -51,9 +51,6 @@ bool KfoldTimeSeriesData::spiltDataIntoKFolds(const GRT::UINT K) {
     //Work out how many samples are in each fold, the last fold might have more samples than the others
     UINT numSamplesPerFold = (UINT) floor( inputDataset.getNumSamples() / double(K) );
 
-    //Resize the cross validation indexs buffer
-    crossValidationIndexs.resize( K );
-
     //Create the random partion indexs
     Random random;
     UINT randomIndex = 0;
@@ -72,12 +69,19 @@ bool KfoldTimeSeriesData::spiltDataIntoKFolds(const GRT::UINT K) {
 		UINT numSamples = (UINT)classData[c].size();
 		for(UINT x = 0; x < numSamples; x++) {
 			//Pick a random index
-			randomIndex = random.getRandomNumberInt(0,numSamples);
+			randomIndex = random.getRandomNumberInt(0, numSamples);
 
 			//Swap the indexs
 			SWAP( classData[c][ x ] , classData[c][ randomIndex ] );
 		}
 	}
+
+
+    //Resize the cross validation indexs buffer
+    crossValidationIndexs.resize( K );
+    for (UINT k = 0; k < K; k++) {
+    	crossValidationIndexs[k].resize(inputDataset.getNumClasses());
+    }
 
     //Loop over each of the classes and add the data equally to each of the k folds until there is no data left
     vector< UINT >::iterator iter;
@@ -85,7 +89,7 @@ bool KfoldTimeSeriesData::spiltDataIntoKFolds(const GRT::UINT K) {
         iter = classData[ c ].begin();
         UINT k = 0;
         while( iter != classData[c].end() ){
-            crossValidationIndexs[ k ].push_back( *iter );
+            crossValidationIndexs[ k ][c].push_back( *iter );
             iter++;
             k = ++k % K;
         }
@@ -96,8 +100,12 @@ bool KfoldTimeSeriesData::spiltDataIntoKFolds(const GRT::UINT K) {
 
 }
 
-LabelledTimeSeriesClassificationData KfoldTimeSeriesData::getTrainingFoldData(const UINT foldIndex, const UINT trainingDatasetSize) const {
+LabelledTimeSeriesClassificationData KfoldTimeSeriesData::getTrainingFoldData(const UINT foldIndex, const UINT numSamplesPerClass) const {
 
+    UINT index = 0;
+	unsigned int randomNumber;
+	unsigned int indexClassLabel;
+	unsigned int numSamplesRemaining;
     LabelledTimeSeriesClassificationData trainingData;
 
     if( !crossValidationSetup ) {
@@ -110,23 +118,44 @@ LabelledTimeSeriesClassificationData KfoldTimeSeriesData::getTrainingFoldData(co
     	return trainingData;
     }
 
-    trainingData.setNumDimensions( numDimensions );
-    //Add the data to the training set, this will consist of all the data that is NOT in the foldIndex
-    UINT index = 0;
-    for(UINT k=0; k < kFoldValue; k++) {
-        if( k != foldIndex ){
-            for(UINT i=0; i<crossValidationIndexs[k].size(); i++){
+    Random random;
 
-                index = crossValidationIndexs[k][i];
-                /* Limit the number of samples in training dataset */
-                if (trainingData.getNumSamples() >= trainingDatasetSize) {
-                	return trainingData;
-                }
-                trainingData.addSample( inputDataset[ index ].getClassLabel(),
-                		inputDataset[ index ].getData() );
-            }
-        }
+    trainingData.setNumDimensions( numDimensions );
+
+    /* Put all K-1 training folds in one data set */
+    vector <vector< UINT > >  MergedIndexs(inputDataset.getNumClasses());
+    for(UINT k = 0; k < kFoldValue; k++) {
+           if( k == foldIndex ) {
+           	continue;
+           }
+           for (UINT classLabel = 0 ; classLabel < crossValidationIndexs[k].size(); classLabel++) {
+        	   for (UINT i = 0; i < crossValidationIndexs[k][classLabel].size(); i++) {
+        		   MergedIndexs[classLabel].push_back(crossValidationIndexs[k][classLabel][i]);
+        	   }
+           }
     }
+
+	/* For each class peak randomly "numSamplesPerClass" samples */
+	for (unsigned int classLabel = 0; classLabel < inputDataset.getNumClasses() ; classLabel++) {
+
+		for (unsigned int numSamples = 1; numSamples <= numSamplesPerClass;numSamples++) {
+
+			numSamplesRemaining = MergedIndexs[classLabel].size();
+			if (numSamplesRemaining == 0) {
+				__android_log_print(ANDROID_LOG_ERROR, "GRT", "The \"numSamplesPerClass\" variable is bigger that the samples for this class");
+				break;
+			}
+			randomNumber = random.getRandomNumberInt(0, numSamplesRemaining);
+			index = MergedIndexs[classLabel][randomNumber];
+
+			/* Remove added sample so that it is not added again */
+			MergedIndexs[classLabel].erase(MergedIndexs[classLabel].begin() + randomNumber);
+
+			trainingData.addSample( inputDataset[ index ].getClassLabel(),
+					inputDataset[ index ].getData() );
+		}
+	}
+
 
     return trainingData;
 }
@@ -148,11 +177,12 @@ LabelledTimeSeriesClassificationData KfoldTimeSeriesData::getTestFoldData(const 
     testData.setNumDimensions( numDimensions );
 
     UINT index = 0;
-    for(UINT i = 0; i < crossValidationIndexs[ foldIndex ].size(); i++) {
-
-        index = crossValidationIndexs[ foldIndex ][i];
-        testData.addSample( inputDataset[ index ].getClassLabel(),
-        		inputDataset[ index ].getData() );
+    for(UINT classLabel = 0; classLabel < crossValidationIndexs[foldIndex].size(); classLabel++) {
+    	for (UINT i = 0; i <  crossValidationIndexs[foldIndex][classLabel].size(); i++) {
+			index = crossValidationIndexs[foldIndex][classLabel][i];
+			testData.addSample( inputDataset[ index ].getClassLabel(),
+					inputDataset[ index ].getData() );
+    	}
     }
 
     return testData;

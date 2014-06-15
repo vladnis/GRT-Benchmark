@@ -247,6 +247,7 @@ obj/local/armeabi/objs/TestModel/TestModels/Temporal-gestures/DynamicTimeWarping
  /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/asm/resource.h \
  /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/asm-generic/resource.h \
  /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/android/log.h \
+ /home/vlad/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/iomanip \
  jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Structures/TestModelException.h \
  jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Structures/TestModelTimer.h \
  jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Structures/KfoldTimeSeriesData.h \
@@ -769,6 +770,8 @@ jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Abstract/../Structures
 /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/asm-generic/resource.h:
 
 /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/android/log.h:
+
+/home/vlad/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/iomanip:
 
 jni/TestModels/Temporal-gestures/DynamicTimeWarping/../../Structures/TestModelException.h:
 

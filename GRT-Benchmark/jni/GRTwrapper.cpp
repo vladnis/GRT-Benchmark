@@ -34,6 +34,7 @@ namespace grt_wrapper {
 			}
 			model->runTests();
 			model->printTrainingResults();
+			model->printPredictionsResults();
 			delete(model);
 		} catch (exception& e) {
 			__android_log_write(ANDROID_LOG_ERROR, "GRT", e.what());

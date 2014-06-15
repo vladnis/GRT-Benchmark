@@ -9,13 +9,14 @@
 #define KFOLDTIMESERIESDATA_H_
 
 #include "GRT.h"
+#include <android/log.h>
 using namespace std;
 using namespace GRT;
 
 class KfoldTimeSeriesData {
 protected:
 	LabelledTimeSeriesClassificationData inputDataset;
-	vector< vector< UINT > > crossValidationIndexs;
+	vector< vector< vector< UINT > > > crossValidationIndexs;
 	bool crossValidationSetup;
 	UINT 	kFoldValue;
 	UINT numDimensions;

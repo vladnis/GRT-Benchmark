@@ -11,20 +11,21 @@
 #include "GRT.h"
 
 #include "TestModelTimer.h"
+#include <iomanip>
 
 using namespace GRT;
 using namespace std;
 
-struct testModelExecTime {
+struct PredictionResultExecInfo {
 	UINT SampleSize;
-	TestModelTimer timer;
+	TestModelTimer timerAvg;
 };
 
-struct ModelTestResult {
+struct ModelPredictionResult {
 	UINT trainingDatasetSize;
-	UINT testDatasetSize;
-	UINT accuracy;
-	vector<testModelExecTime> execTimeList;
+	double accuracyAvg;
+	UINT totalTestNumber;
+	vector<PredictionResultExecInfo> execTimeList;
 };
 
 struct ModelTraingResult {
@@ -35,7 +36,7 @@ struct ModelTraingResult {
 
 class TestModelResult {
 private:
-	vector< ModelTestResult > testResults;
+	vector< ModelPredictionResult > predictionResults;
 	vector <ModelTraingResult> traingResults;
 
 public:
@@ -47,7 +48,8 @@ public:
 	void printTrainingResults();
 
 	void addTrainingResult(unsigned int trainingNumSamples, TestModelTimer timer);
-	void addPredictionResult(ModelTestResult);
+	void addPredictionResult(double, UINT);
+	void addPredictionTimerResult(TestModelTimer, UINT, UINT);
 };
 
 #endif /* TESTMODELRESULT_H_ */

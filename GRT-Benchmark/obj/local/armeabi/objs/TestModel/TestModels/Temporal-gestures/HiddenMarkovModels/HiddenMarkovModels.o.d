@@ -247,6 +247,7 @@ obj/local/armeabi/objs/TestModel/TestModels/Temporal-gestures/HiddenMarkovModels
  /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/asm/resource.h \
  /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/asm-generic/resource.h \
  /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/android/log.h \
+ /home/vlad/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/iomanip \
  jni/TestModels/Temporal-gestures/HiddenMarkovModels/../../Structures/TestModelException.h \
  jni/TestModels/Temporal-gestures/HiddenMarkovModels/../../Structures/TestModelTimer.h \
  jni/TestModels/Temporal-gestures/HiddenMarkovModels/../../Structures/KfoldTimeSeriesData.h \
@@ -770,6 +771,8 @@ jni/TestModels/Temporal-gestures/HiddenMarkovModels/../../Abstract/../Structures
 /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/asm-generic/resource.h:
 
 /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/android/log.h:
+
+/home/vlad/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/iomanip:
 
 jni/TestModels/Temporal-gestures/HiddenMarkovModels/../../Structures/TestModelException.h:
 
