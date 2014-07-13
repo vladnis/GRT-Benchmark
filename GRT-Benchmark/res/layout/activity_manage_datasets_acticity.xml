@@ -1,0 +1,40 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity"
+    >
+    
+    <RelativeLayout
+    	android:id="@+id/activityMain"
+    	android:layout_width="match_parent"
+    	android:layout_height="match_parent" >
+    </RelativeLayout>
+
+	<Button
+	    android:layout_alignParentBottom="true"
+	    android:layout_centerHorizontal="true"
+		android:layout_height="wrap_content"
+     	android:layout_width="wrap_content"
+     	android:text="Start capture"
+     	android:onClick="startCapture"
+     	android:id="@+id/startButton"
+     	android:background="@drawable/button_custom"
+     	android:padding="5dp" />
+	
+	<Button
+	    android:layout_alignParentBottom="true"
+	    android:layout_centerHorizontal="true"
+		android:layout_height="wrap_content"
+     	android:layout_width="wrap_content"
+     	android:text="Show capture"
+     	android:onClick="showCapture"
+     	android:id="@+id/showButton"
+     	android:visibility="invisible"
+     	android:background="@drawable/button_custom"
+     	android:padding="5dp" />
+</RelativeLayout>
