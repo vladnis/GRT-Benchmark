@@ -26,19 +26,19 @@ namespace grt_wrapper {
 		/* Build Test Model Config */
 		TestModelConfig *config = new TestModelConfig(env, jDatasetFilePath, jResultFolderPath,jUsecase, jPipeline);
 
-		/* Generate Test Model from Factory */
-		AbstractTestModel *model = TestModelFactory::generatePipeline(config);
 		try {
+			/* Generate Test Model from Factory */
+			AbstractTestModel *model = TestModelFactory::generatePipeline(config);
 			if (model == NULL) {
 				throw TestModelException("Can not identify test model.");
 			}
 			model->runTests();
 			model->printTrainingResults();
 			model->printPredictionsResults();
+			model->printMemoryUsageResult();
 			delete(model);
 		} catch (exception& e) {
 			__android_log_write(ANDROID_LOG_ERROR, "GRT", e.what());
-			delete(model);
 		}
 	}
 

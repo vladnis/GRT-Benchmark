@@ -138,7 +138,7 @@ LabelledTimeSeriesClassificationData KfoldTimeSeriesData::getTrainingFoldData(co
 	/* For each class peak randomly "numSamplesPerClass" samples */
 	for (unsigned int classLabel = 0; classLabel < inputDataset.getNumClasses() ; classLabel++) {
 
-		for (unsigned int numSamples = 1; numSamples <= numSamplesPerClass;numSamples++) {
+		for (unsigned int numSamples = 1; numSamples <= numSamplesPerClass; numSamples++) {
 
 			numSamplesRemaining = MergedIndexs[classLabel].size();
 			if (numSamplesRemaining == 0) {

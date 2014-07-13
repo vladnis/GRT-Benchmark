@@ -13,7 +13,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/chart"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
@@ -28,6 +28,18 @@
         <activity
             android:name="runTestsActivity.RunTests"
             android:label="@string/title_activity_run_tests" >
+        </activity>
+        <activity
+            android:name="manageDatasets.ManageDatasetsActivity"
+            android:label="@string/title_activity_manage_datasets_acticity" >
+        </activity>
+        <activity
+            android:name="manageDatasets.CreateDatasetActivity"
+            android:label="@string/title_activity_create_dataset" >
+        </activity>
+        <activity
+            android:name="manageDatasets.ShowDrawing"
+            android:label="@string/title_activity_show_drawing" >
         </activity>
     </application>
 

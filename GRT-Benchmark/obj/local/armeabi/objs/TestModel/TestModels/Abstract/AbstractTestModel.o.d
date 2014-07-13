@@ -243,6 +243,9 @@ obj/local/armeabi/objs/TestModel/TestModels/Abstract/AbstractTestModel.o: \
  /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/asm/resource.h \
  /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/asm-generic/resource.h \
  /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/android/log.h \
+ jni/TestModels/Abstract/../Structures/MemoryUsage.h \
+ /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/sys/sysinfo.h \
+ /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/linux/kernel.h \
  /home/vlad/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/iomanip
 
 jni/TestModels/Abstract/AbstractTestModel.h:
@@ -754,5 +757,11 @@ jni/TestModels/Abstract/../Structures/TestModelTimer.h:
 /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/asm-generic/resource.h:
 
 /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/android/log.h:
+
+jni/TestModels/Abstract/../Structures/MemoryUsage.h:
+
+/home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/sys/sysinfo.h:
+
+/home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/linux/kernel.h:
 
 /home/vlad/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/iomanip:

@@ -119,8 +119,6 @@ void TestModelResult::printPredictionsResults() {
 
 void TestModelResult::printTrainingResults() {
 
-	const UINT printWidth = 20;
-
 	__android_log_print(ANDROID_LOG_VERBOSE, "GRT", "Printing training results");
 
 	cout << left << std::setw(printWidth) << "TDSize" << std::setw(printWidth) << left << "AvgSysTime" << std::setw(printWidth) << left << "AvgSysTime" << endl;
@@ -145,4 +143,26 @@ void TestModelResult::printTrainingResults() {
 		cout << std::setw(printWidth) << left<< setprecision(6)  << AvgUserTimeS << endl;
 	}
 	cout << endl;
+}
+
+void TestModelResult::addMemoryUsageSample(MemoryUsageSample sample) {
+	memoryUsageSamples.push_back(sample);
+}
+
+void TestModelResult::printMemoryUsageResult() {
+
+	cout << left << std::setw(printWidth) << "TDSize" << std::setw(printWidth) << left << "startPhysMem" << std::setw(printWidth) << left << "startVirtMem";
+	cout << left << std::setw(printWidth) << "endphysMem" << std::setw(printWidth) << left << "endVirtMem" << std::setw(printWidth) << left << "difPhysMem";
+	cout << std::setw(printWidth) << left << "difVirtMem" << std::setw(printWidth) << left << "difPhysMemUsed" << std::setw(printWidth) << left << "difVirtMemUsed" << endl;
+
+	std::vector<MemoryUsageSample>::iterator result = memoryUsageSamples.begin();
+	for (; result != memoryUsageSamples.end(); ++result) {
+		cout << std::setw(printWidth) << left << result->numTrainingSamples;
+
+		cout << std::setw(printWidth) << left << result->endMemoryUsage.physMemUsedByProccess;
+		cout << std::setw(printWidth) << left << result->endMemoryUsage.virtualMemUsedByProccess;
+
+		cout << endl;
+
+	}
 }

@@ -32,12 +32,19 @@ void BaseTGTestModel::setUpResults() {
 
 void BaseTGTestModel::loadInputDataset() {
 	/* Load input dataset */
-	if (!inputDataset.loadDatasetFromFile(config->DatasetFilePath)) {
+	try {
+		if (!inputDataset.loadDatasetFromFile(config->DatasetFilePath)) {
+			throw TestModelException("BaseTGTestModel: Failed to load training data.");
+		}
+	} catch (...) {
 		throw TestModelException("BaseTGTestModel: Failed to load training data.");
 	}
 }
 
 void BaseTGTestModel::redirectOutput() {
+	/* Output file for model file */
+	sprintf(modelFile, "%s.GRTmodel", config->ResultFilePath);
+
 	/* Redirect stdout to new file*/
 	outStream = new std::ofstream(config->ResultFilePath);
 	std::cout.rdbuf(outStream->rdbuf());
@@ -113,12 +120,14 @@ bool BaseTGTestModel::runTests(){
 bool BaseTGTestModel::runTestWindow() {
 
 	UINT maxTrainigSetSize = inputDataset.getNumSamples() * (KFolds - 1) / (KFolds * inputDataset.getNumClasses());
+	__android_log_print(ANDROID_LOG_DEBUG, "GRT", "Max training size: %d", maxTrainigSetSize);
 
+	// KFolds
 	for (GRT::UINT k = 1 ; k < KFolds; k++) {
 
 		__android_log_print(ANDROID_LOG_WARN, "GRT", "Running tests for: %d fold", k);
-
-		for (UINT trainingSetSize = inputDataset.getNumClasses(); trainingSetSize <= maxTrainigSetSize; trainingSetSize ++) {
+		//  maxTrainigSetSize
+		for (UINT trainingSetSize = 1; trainingSetSize <= maxTrainigSetSize; trainingSetSize ++) {
 
 			/* Set up training datasets for current fold */
 			trainingDataset = kFoldTS->getTrainingFoldData(k, trainingSetSize);
@@ -147,15 +156,43 @@ bool BaseTGTestModel::runTestFold() {
 
 	/* Traing model */
 	TestModelTimer trainingTimer;
+
+	/* Start timer */
 	trainingTimer.start();
+
+
 	if(!model->train(trainingDataset)) {
 		throw TestModelException("BaseTGTestModel:  Failed to train classifier.\n");
 	}
+
+	/* Stop timer */
 	trainingTimer.stop();
 
 	/* Save training speed */
 	ModelTraingResult trainingResult;
 	addTrainingResult(trainingDataset.getNumSamples(), trainingTimer);
+
+	model->saveModelToFile(modelFile);
+
+	/* Start Memory usage sample */
+	MemoryUsage startSample;
+	startSample.takeSample();
+
+	GRT::Classifier * aux_model = new GRT::Classifier();
+	aux_model->loadModelFromFile(config->ResultFilePath);
+
+	/* End Memory usage sample */
+	MemoryUsage endSample;
+	endSample.takeSample();
+
+	delete(aux_model);
+
+	/* Save Memory usage sample */
+	MemoryUsageSample sample;
+	sample.numTrainingSamples = trainingDataset.getNumSamples();
+	sample.startMemoryUsage = startSample;
+	sample.endMemoryUsage  = endSample;
+	addMemoryUsageSample(sample);
 
 	/* Used for saving test analysis */
 	vector<PredictionResultExecInfo> testTimes;

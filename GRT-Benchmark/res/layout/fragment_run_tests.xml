@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,11 +6,122 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.licenta.grt_benchmark.RunTests$PlaceholderFragment" >
+    tools:context="com.licenta.grt_benchmark.RunTests$PlaceholderFragment"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"  >
 
+    <LinearLayout
+       android:background="#33B5E5"
+       android:id="@+id/loader"
+       android:orientation="horizontal" 
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_gravity="center_horizontal"
+       android:visibility="visible"
+       >
+
+		<ProgressBar
+		   android:layout_margin="10dp"
+		   android:id="@+id/progressBar1"
+		   android:layout_width="wrap_content"
+		   android:layout_height="wrap_content"
+		   />
+		<TextView
+		    android:layout_margin="10dp"
+		    android:textSize="16sp"
+		    android:text="Running tests ..."
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_gravity="center"
+		    android:textColor="#fff"
+		    />
+	</LinearLayout>
+	
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_marginTop="20dp"	
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:text="Tests information:"
+		android:textSize="34sp"
+		android:textStyle="bold|italic"
+		/>
+    
+    <LinearLayout
+        android:layout_margin="5dp"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:orientation="vertical" >
+        <TextView 
+            android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+            android:text="Usecase:"
+            android:textSize="24sp" />
 
-</RelativeLayout>
+       	<TextView
+       	    android:id="@+id/usecase"
+            android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:textSize="24sp"
+        	android:textStyle="bold" />
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_margin="5dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+        <TextView 
+            android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+            android:text="Pipeline name:"
+            android:textSize="24sp" />
+
+       	<TextView
+       	    android:id="@+id/pipeline"
+            android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:textSize="24sp"
+        	android:textStyle="bold" />
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:layout_margin="5dp"        
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+        <TextView 
+            android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+            android:text="Input dataset name:"
+            android:textSize="24sp" />
+
+       	<TextView
+       	    android:id="@+id/dataset"
+            android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:textSize="24sp"
+        	android:textStyle="bold" />
+       	
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_margin="5dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+        <TextView 
+            android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+            android:text="Result file path:"
+            android:textSize="24sp" />
+
+       	<TextView
+       	    android:id="@+id/result"
+            android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:textSize="24sp"
+        	android:textStyle="bold" />
+       	
+    </LinearLayout>
+
+</LinearLayout>

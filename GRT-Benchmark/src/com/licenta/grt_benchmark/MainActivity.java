@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import async.Maintenance;
 import dialogFragments.ListDialog;
+import dialogFragments.manageDatasetDialog;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -32,7 +33,7 @@ public class MainActivity extends ActionBarActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		// getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
 
@@ -71,6 +72,14 @@ public class MainActivity extends ActionBarActivity {
 	public void startTest(View view) {
 		ListDialog useCase = new ListDialog();
 		useCase.show(getSupportFragmentManager(), ListDialog.useCaseTag);
+	}
+	
+	/**
+	 * On click callback for start test button.
+	 */
+	public void manageDataset(View view) {
+		manageDatasetDialog dialog  = new manageDatasetDialog();
+		dialog.show(getSupportFragmentManager(), ListDialog.useCaseTag);
 	}
 
 }

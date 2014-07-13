@@ -244,12 +244,16 @@ obj/local/armeabi/objs/TestModelFactory/TestModelFactory/TestModelFactory.o: \
  /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/asm/resource.h \
  /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/asm-generic/resource.h \
  /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/android/log.h \
+ jni/TestModels/Abstract/../Structures/MemoryUsage.h \
+ /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/sys/sysinfo.h \
+ /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/linux/kernel.h \
  /home/vlad/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/iomanip \
  jni/TestModels/Structures/TestModelConfig.h \
  jni/TestModels/Structures/TestModelException.h \
  jni/TestModels/Structures/TestModelTimer.h \
  jni/TestModels/Structures/KfoldTimeSeriesData.h \
  jni/TestModels/Structures/TestModelResult.h \
+ jni/TestModels/Structures/MemoryUsage.h \
  jni/TestModels/Temporal-gestures/BaseTGTestModel.h \
  jni/TestModels/Temporal-gestures/../Abstract/AbstractTestModel.h \
  jni/TestModels/Temporal-gestures/../Structures/TestModelException.h \
@@ -777,6 +781,12 @@ jni/TestModels/Abstract/../Structures/TestModelTimer.h:
 
 /home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/android/log.h:
 
+jni/TestModels/Abstract/../Structures/MemoryUsage.h:
+
+/home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/sys/sysinfo.h:
+
+/home/vlad/android-ndk/platforms/android-19/arch-arm/usr/include/linux/kernel.h:
+
 /home/vlad/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/iomanip:
 
 jni/TestModels/Structures/TestModelConfig.h:
@@ -788,6 +798,8 @@ jni/TestModels/Structures/TestModelTimer.h:
 jni/TestModels/Structures/KfoldTimeSeriesData.h:
 
 jni/TestModels/Structures/TestModelResult.h:
+
+jni/TestModels/Structures/MemoryUsage.h:
 
 jni/TestModels/Temporal-gestures/BaseTGTestModel.h:
 

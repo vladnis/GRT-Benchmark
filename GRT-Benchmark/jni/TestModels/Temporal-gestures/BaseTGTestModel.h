@@ -29,6 +29,7 @@ private:
 	GRT::LabelledTimeSeriesClassificationData inputDataset;
 	std::ofstream *outStream, *errStream, *logStream;
 	int KFolds;
+	char modelFile[1000];
 
 public:
 	BaseTGTestModel(TestModelConfig *);

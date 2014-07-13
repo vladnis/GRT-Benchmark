@@ -1,7 +1,9 @@
 package storage;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -11,6 +13,7 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.os.Environment;
 import android.util.Log;
+import android.widget.Toast;
 
 public class Storage {
 	
@@ -19,32 +22,15 @@ public class Storage {
 	private static String RootFolder = "/GRT";
 	
 	/* Use cases */
-	private static String[] useCaseNames = {"Static-postures", "Temporal-gestures", "Regression"};
-
-
-	/* Pipelines for every use case */
-	private static final String[] temporalGetsuresPipelines = {
-		"Dynamic-time-warping",
-		"Hidden-Markov-Models"
-	};
-
-	private static final String[] staticGetsuresPipelines = {
-	};
-	
-	private static final String[] RegressionPipelines = {
+	private static String[] useCaseNames = {
+		"Segmented gestures", "Continous stream"
 	};
 
 	/* Associated pipelines */
-	private static final  ArrayList<String[]> pipelines = new  ArrayList<String[]>() {/**
-		 * 
-		 */
-		private static final long serialVersionUID = -5242154802737194462L;
-
-	{
-	    add(staticGetsuresPipelines);
-	    add(temporalGetsuresPipelines);
-	    add(RegressionPipelines);
-	}};
+	private static final  String[] pipelines = {
+		"Dynamic-time-warping",
+		"Hidden-Markov-Models"
+	};
 	
 	private static void copyFile(InputStream in, OutputStream out) throws IOException {
 	    byte[] buffer = new byte[1024];
@@ -105,11 +91,10 @@ public class Storage {
 		File file = null;
 
 		// Create results folders
-		for (int i = 0; i < pipelines.size(); i++) {
+		for (int i = 0; i < pipelines.length; i++) {
 			String useCaseFolderPath = absolutePath + useCaseNames[i] + "/";
-		    String[] algorithms = pipelines.get(i);
-			for (int j = 0; j < algorithms.length; j++) {
-				file = new File(useCaseFolderPath + algorithms[j]);
+			for (int j = 0; j < pipelines.length; j++) {
+				file = new File(useCaseFolderPath + pipelines[j]);
 			    if (!file.mkdirs()) {
 			        Log.d("Build dir struct", "Folder: " + file + " was not created.");
 			    }
@@ -143,8 +128,8 @@ public class Storage {
 	 * Get list of all pipelines defined for Use case
 	 * @param useCaseKey The position in "useCaseNames" of the use case.
 	 */
-	public static String[] getPepelines(Integer useCaseKey) {
-		return Storage.pipelines.get(useCaseKey);
+	public static String[] getPepelines() {
+		return Storage.pipelines;
 	}
 	
 	/**
@@ -152,22 +137,57 @@ public class Storage {
 	 */
 	public static String[] getDatasets(Integer useCaseKey, Context ctx) {
 		ArrayList<String> datasetNames = new ArrayList<String>();
-		String [] list = null;
-		try {
-		   list = ctx.getAssets().list(DatasetsFolder);
-           for (String fileName : list) {
-        	   String[] fileNameTokens = fileName.split("-");
-
-        	   if (Integer.parseInt(fileNameTokens[0]) == useCaseKey) {
-        		   datasetNames.add(fileName);
-        	   }
-           }
-		} catch (IOException e) {
-			e.printStackTrace();
+		
+		
+		String DatasetExternPath = getRootPath() + DatasetsFolder;
+		
+		File f = new File(DatasetExternPath);        
+		File file[] = f.listFiles();
+		
+		for (int i=0; i < file.length; i++)
+		{
+			datasetNames.add(file[i].getName());
 		}
 		String[] auxArray = new String[datasetNames.size()];
 		auxArray = datasetNames.toArray(auxArray);
 		return auxArray;
+	}
+	
+	public static boolean createNewDataset(String datasetName, String description, Integer usecase, Context context) {
+		if (datasetName.length() == 0) {
+			Toast toast = Toast.makeText(context, "Invalid dataset name", Toast.LENGTH_SHORT);
+			toast.show();
+			return false;
+		}
+		String filePath = getRootPath() + DatasetsFolder + "/" + Integer.toString(usecase) + "-" + datasetName;
+		File file = new File(filePath);
+	    try {
+			file.createNewFile();
+			FileWriter fw;
+			try {
+				fw = new FileWriter(file);
+		        BufferedWriter bw = new BufferedWriter(fw);
+		        bw.write("GRT_LABELLED_CLASSIFICATION_DATA_FILE_V1.0\n");
+		        bw.write("DatasetName: "  + datasetName + "\n");
+		        bw.write("InfoText: "  + description + "\n");
+		        bw.write("NumDimensions: 3\n");
+		        bw.write("TotalNumTrainingExamples: 0\n");
+		        bw.write("NumberOfClasses: 5\n");
+		        bw.write("LabelledTimeSeriesTrainingData:\n");
+		        bw.flush();
+		        bw.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+				return false;
+			}
+			Toast toast = Toast.makeText(context, "New dataset was created!", Toast.LENGTH_SHORT);
+			toast.show();
+		} catch (IOException e) {
+			Toast toast = Toast.makeText(context, "Dataset name is already used", Toast.LENGTH_SHORT);
+			toast.show();
+			return false;
+		}
+	    return true;
 	}
 	
 }

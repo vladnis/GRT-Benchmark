@@ -37,7 +37,7 @@ public class ListDialog extends DialogFragment {
 				break;
 			case ListDialog.pipelineTag:
 				title = R.string.choose_pipeline;
-				listItems = Storage.getPepelines(ListDialog.selectedUseCase);
+				listItems = Storage.getPepelines();
 				negativeButton = R.string.back;
 				break;
 			case ListDialog.datasetTag:
@@ -82,7 +82,7 @@ public class ListDialog extends DialogFragment {
             				case ListDialog.datasetTag:
             					
             					String usecase = Storage.getUseCases()[selectedUseCase];
-            					String pipeline = Storage.getPepelines(selectedUseCase)[selectedPipeline];
+            					String pipeline = Storage.getPepelines()[selectedPipeline];
             					String datasetFile = Storage.getDatasets(selectedUseCase, getActivity())[which];
             					
             					/* Start new test */

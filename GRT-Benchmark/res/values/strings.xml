@@ -4,12 +4,15 @@
     <string name="app_name">GRT-Benchmark</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="start_test">Start test</string>
+    <string name="start_test">Start new benchmark test</string>
     <string name="cancel">Cancel</string>
     <string name="back">Back</string>
     <string name="choose_use_case">Choose Use Case</string>
     <string name="choose_pipeline">Choose GRT Pipeline</string>
     <string name="choose_dataset">Choose Dataset</string>
     <string name="title_activity_run_tests">RunTests</string>
-
+    <string name="title_activity_manage_datasets_acticity">ManageDatasetsActicity</string>
+    <string name="title_activity_create_dataset">CreateDatasetActivity</string>
+    <string name="title_activity_show_drawing">Show gesture</string>
+    
 </resources>

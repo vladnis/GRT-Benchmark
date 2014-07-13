@@ -11,7 +11,12 @@
 #include "GRT.h"
 
 #include "TestModelTimer.h"
+#include "MemoryUsage.h"
+
 #include <iomanip>
+
+#include "sys/types.h"
+#include "sys/sysinfo.h"
 
 using namespace GRT;
 using namespace std;
@@ -34,10 +39,18 @@ struct ModelTraingResult {
 	TestModelTimerResults totalSysTime, totalUserTime;
 };
 
+struct MemoryUsageSample {
+	MemoryUsage startMemoryUsage;
+	MemoryUsage endMemoryUsage;
+	int numTrainingSamples;
+};
+
 class TestModelResult {
 private:
 	vector< ModelPredictionResult > predictionResults;
 	vector <ModelTraingResult> traingResults;
+	vector <MemoryUsageSample> memoryUsageSamples;
+	const static UINT printWidth = 20;
 
 public:
 	TestModelResult();
@@ -46,10 +59,12 @@ public:
 
 	void printPredictionsResults();
 	void printTrainingResults();
+	void printMemoryUsageResult();
 
 	void addTrainingResult(unsigned int trainingNumSamples, TestModelTimer timer);
 	void addPredictionResult(double, UINT);
 	void addPredictionTimerResult(TestModelTimer, UINT, UINT);
+	void addMemoryUsageSample(MemoryUsageSample);
 };
 
 #endif /* TESTMODELRESULT_H_ */

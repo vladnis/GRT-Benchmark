@@ -8,6 +8,7 @@
 #include "Structures/TestModelTimer.h"
 #include "Structures/KfoldTimeSeriesData.h"
 #include "Structures/TestModelResult.h"
+#include "Structures/MemoryUsage.h"
 
 #include "Temporal-gestures/BaseTGTestModel.h"
 #include "Temporal-gestures/DynamicTimeWarping/DynamicTimeWarping.h"

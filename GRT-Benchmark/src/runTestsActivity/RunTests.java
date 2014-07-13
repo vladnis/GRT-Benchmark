@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.licenta.grt_benchmark.GRTwrapper;
 import com.licenta.grt_benchmark.R;
@@ -27,9 +28,10 @@ public class RunTests extends ActionBarActivity {
 	public static String pipelineTag = "pipelineTag";
 	
 	/* Input parameters for test */
-	String pipeline = null;
-	String usecase = null;
-	String dataset = null;
+	public static String pipeline = null;
+	public static String usecase = null;
+	public static String dataset = null;
+	public static String ResultFolderPath = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,32 +51,33 @@ public class RunTests extends ActionBarActivity {
 		/* Get intent parameters */
 		if ( (pipeline == null) || (usecase == null) || (dataset == null) ) {
 			Intent testIntent = getIntent();
-			this.pipeline = testIntent.getStringExtra(pipelineTag);
-			this.usecase = testIntent.getStringExtra(usecaseTag);
-			this.dataset = testIntent.getStringExtra(datasetTag);
+			RunTests.pipeline = testIntent.getStringExtra(pipelineTag);
+			RunTests.usecase = testIntent.getStringExtra(usecaseTag);
+			RunTests.dataset = testIntent.getStringExtra(datasetTag);
 		}
 		
 		/* Use full path for input and output */
 		/* Generate filename for output*/
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss", Locale.ROOT);
 		String currentDateandTime = dateFormat.format(new Date());
-		final String ResultFolderPath = Storage.getRootPath() + this.usecase +
-				"/" + this.pipeline + "/" + currentDateandTime;
+		RunTests.ResultFolderPath = Storage.getRootPath() + usecase +
+				"/" + pipeline + "/" + currentDateandTime;
 		
-		this.dataset = Storage.getDatasetPath() + this.dataset;
+		RunTests.dataset = Storage.getDatasetPath() + RunTests.dataset;
 		
 		/* Run test on another thread */
 		new Thread(new Runnable() {
 			  @Override
 			  public void run()
 			  {
-				  GRTwrapper.test(
-						  RunTests.this.dataset,
-						  ResultFolderPath,
-						  RunTests.this.usecase,
-						  RunTests.this.pipeline
-				  );
-				  RunTests.startedTesting = false;
+
+					GRTwrapper.test(
+							RunTests.dataset,
+							RunTests.ResultFolderPath,
+							RunTests.usecase,
+							RunTests.pipeline
+					);
+					RunTests.startedTesting = false;
 			  }
 		}).start();
 		
@@ -84,7 +87,7 @@ public class RunTests extends ActionBarActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.run_tests, menu);
+		// getMenuInflater().inflate(R.menu.run_tests, menu);
 		return true;
 	}
 
@@ -98,6 +101,25 @@ public class RunTests extends ActionBarActivity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+
+		TextView t =new TextView(this); 
+		/* Instantiate interface */
+	    t = (TextView)findViewById(R.id.pipeline); 
+	    t.setText(RunTests.pipeline);
+	   
+	    t = (TextView)findViewById(R.id.dataset); 
+	    t.setText(RunTests.dataset);
+	    
+	    t = (TextView)findViewById(R.id.usecase); 
+	    t.setText(RunTests.usecase);
+	    
+	    t = (TextView)findViewById(R.id.result); 
+	    t.setText(RunTests.ResultFolderPath);
 	}
 
 	/**

@@ -7,9 +7,10 @@
 #include "TestModelFactory.h"
 
 AbstractTestModel *TestModelFactory::generatePipeline(TestModelConfig *config) {
-	if (std::strcmp(config->Usecase, "Static-postures")) {
-	}
-	if (std::strcmp(config->Usecase, "Temporal-gestures") == 0) {
+
+	__android_log_print(ANDROID_LOG_DEBUG, "GRT", "%s" ,config->Usecase);
+
+	if (std::strcmp(config->Usecase, "Segmented gestures") == 0) {
 
 		/* DTW */
 		if (std::strcmp(config->Pipeline, "Dynamic-time-warping") == 0) {
@@ -20,8 +21,6 @@ AbstractTestModel *TestModelFactory::generatePipeline(TestModelConfig *config) {
 		if (std::strcmp(config->Pipeline, "Hidden-Markov-Models") == 0) {
 			return new HiddenMarkovModels(config);
 		}
-	}
-	if (std::strcmp(config->Usecase, "Regression")) {
 	}
 	return NULL;
 }
